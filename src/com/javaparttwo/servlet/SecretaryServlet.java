@@ -2,6 +2,8 @@ package com.javaparttwo.servlet;
 
 import java.io.IOException;
 import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import javax.annotation.Resource;
@@ -18,7 +20,7 @@ import javax.sql.DataSource;
 /**
  * Servlet implementation class SecretaryServlet
  */
-@WebServlet({ "/SecretaryServlet", "/secretary" })
+@WebServlet({"/secretary" })
 public class SecretaryServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	
@@ -30,6 +32,7 @@ public class SecretaryServlet extends HttpServlet {
      */
     public SecretaryServlet() {
     	//
+    	System.out.println("Hi secretary");
     }
 
 	/**
@@ -40,9 +43,22 @@ public class SecretaryServlet extends HttpServlet {
 		
 		System.out.println("Hi from get request!");
 		
+		PreparedStatement stmt = null;
+		
+		String str = "SELECT * FROM javapart2.malakas";
+		
 		try {
 			Connection con = ds.getConnection();
 			System.out.println(con);
+			
+			stmt = con.prepareStatement(str);
+			ResultSet rs = stmt.executeQuery();
+			
+			while (rs.next()) {
+				System.out.println(rs.getString("name"));
+			}
+			
+			
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
