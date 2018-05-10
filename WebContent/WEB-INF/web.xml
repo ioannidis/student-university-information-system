@@ -6,7 +6,7 @@
     <welcome-file>index.jsp</welcome-file>
   </welcome-file-list>
   <resource-ref>
-    <description>MySQL Datasource example</description>
+    <description>MySQL Datasource</description>
     <res-ref-name>jdbc/javapart2</res-ref-name>
     <res-type>javax.sql.DataSource</res-type>
     <res-auth>Container</res-auth>
