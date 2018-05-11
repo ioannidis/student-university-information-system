@@ -36,7 +36,7 @@ public class SecretaryServlet extends HttpServlet {
     }
 
 	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#doGet(HttpSeSrvletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
@@ -45,7 +45,7 @@ public class SecretaryServlet extends HttpServlet {
 		
 		PreparedStatement stmt = null;
 		
-		String str = "SELECT * FROM javapart2.malakas";
+		String str = "SELECT * FROM javapart2.users";
 		
 		try {
 			Connection con = ds.getConnection();
@@ -55,7 +55,14 @@ public class SecretaryServlet extends HttpServlet {
 			ResultSet rs = stmt.executeQuery();
 			
 			while (rs.next()) {
-				System.out.println(rs.getString("name"));
+				System.out.println(rs.getString("username"));
+				System.out.println(rs.getString("password"));
+				System.out.println(rs.getString("first_name"));
+				System.out.println(rs.getString("last_name"));
+				System.out.println(rs.getString("phone_number"));
+				System.out.println(rs.getString("email"));
+				System.out.println(rs.getString("role_id"));
+				System.out.println(rs.getString("========"));
 			}
 			
 			
