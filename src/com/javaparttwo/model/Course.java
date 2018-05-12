@@ -11,11 +11,11 @@ public class Course {
      * The title of this course.
      */
     private String title;
-
+    
     /**
      * The department in which this course belongs to.
      */
-    private String department;
+    private String instructorUsername;
 
     /**
      * The teaching hours of this course.
@@ -36,16 +36,16 @@ public class Course {
      * @param teachingHours The teaching hours of this course.
      * @param ects          The ETCS of this course.
      */
-    public Course(String courseId, String title, String department, int teachingHours, int ects) {
+    public Course(String courseId, String title, int ects,  int teachingHours,String instructorUsername) {
         this.courseId = courseId;
         this.title = title;
-        this.department = department;
-        this.teachingHours = teachingHours;
         this.ects = ects;
+        this.teachingHours = teachingHours;
+        this.instructorUsername = instructorUsername;
 
         // Creation message
-        System.out.println("[Course] CourseID: " + courseId + ", Title: " + title + ", Department: " + department + ", Teaching Hours: "
-                + teachingHours + " Ects: " + ects);
+        System.out.println("[Course] CourseID: " + courseId + ", Title: " + title + ", Teaching Hours: "
+                + teachingHours + " Ects: " + ects + ", Instructor: " + instructorUsername);
     }
 
     /**
@@ -55,6 +55,15 @@ public class Course {
      */
     public String getCourseId() {
         return courseId;
+    }
+    
+    /**
+     * Set the title of this course.
+     *
+     * @param title The new title.
+     */
+    public void setCourseId(String courseId) {
+        this.courseId = courseId;
     }
 
     /**
@@ -80,8 +89,8 @@ public class Course {
      *
      * @return The department in which this course belongs to.
      */
-    public String getDepartment() {
-        return department;
+    public String getInstructorUsername() {
+        return instructorUsername;
     }
 
     /**
@@ -89,8 +98,8 @@ public class Course {
      *
      * @param department The new department.
      */
-    public void setDepartment(String department) {
-        this.department = department;
+    public void setInstructorUsername(String instructorUsername) {
+        this.instructorUsername = instructorUsername;
     }
 
     /**

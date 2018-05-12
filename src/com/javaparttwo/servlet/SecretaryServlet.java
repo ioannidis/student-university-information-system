@@ -5,6 +5,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.annotation.Resource;
 import javax.naming.Context;
@@ -16,6 +18,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.sql.DataSource;
+
+import com.javaparttwo.model.Course;
+import com.javaparttwo.service.CourseService;
 
 /**
  * Servlet implementation class SecretaryServlet
@@ -43,35 +48,14 @@ public class SecretaryServlet extends HttpServlet {
 		
 		System.out.println("Hi from get request!");
 		
-		PreparedStatement stmt = null;
+		CourseService courseService = new CourseService(ds);
 		
-		String str = "SELECT * FROM javapart2.users";
+		List<Course> courses = new ArrayList<>();
+		courses = courseService.getCourses();
 		
-		try {
-			Connection con = ds.getConnection();
-			System.out.println(con);
-			
-			stmt = con.prepareStatement(str);
-			ResultSet rs = stmt.executeQuery();
-			
-			while (rs.next()) {
-				System.out.println(rs.getString("username"));
-				System.out.println(rs.getString("password"));
-				System.out.println(rs.getString("first_name"));
-				System.out.println(rs.getString("last_name"));
-				System.out.println(rs.getString("phone_number"));
-				System.out.println(rs.getString("email"));
-				System.out.println(rs.getString("role_id"));
-				System.out.println(rs.getString("========"));
-			}
-			
-			
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
-		response.getWriter().append("! Served at : ").append(request.getContextPath());
+		request.setAttribute("courses", courses);
+		request.getRequestDispatcher("secretary.jsp").forward(request, response);
+
 	}
 
 	/**
