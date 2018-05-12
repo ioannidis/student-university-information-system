@@ -17,7 +17,6 @@ public class CourseService {
 	
 	public CourseService(DataSource ds) {
 		this.ds = ds;
-		System.out.println(this.ds);
 	}
 	
 	public List<Course> getCourses() {

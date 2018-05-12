@@ -37,17 +37,13 @@ public class SecretaryServlet extends HttpServlet {
      */
     public SecretaryServlet() {
     	//
-    	System.out.println("Hi secretary");
     }
 
 	/**
 	 * @see HttpServlet#doGet(HttpSeSrvletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		
-		System.out.println("Hi from get request!");
-		
+				
 		CourseService courseService = new CourseService(ds);
 		
 		List<Course> courses = new ArrayList<>();
