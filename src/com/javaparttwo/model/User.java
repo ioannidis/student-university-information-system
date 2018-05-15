@@ -38,7 +38,7 @@ public class User {
     /**
      * The department in which the user belongs to.
      */
-    private String department;
+    private String roleId;
 
     /**
      * The total number of user objects created during the runtime of this application.
@@ -53,14 +53,14 @@ public class User {
      * @param surname    The last name of this user.
      * @param department The department in which the user belongs to.
      */
-    public User(String username, String password, String name, String surname, int phoneNumber, String email, String department) {
+    public User(String username, String password, String name, String surname, int phoneNumber, String email, String roleId) {
         this.username = username;
         this.password = password;
         this.name = name;
         this.surname = surname;
         this.phoneNumber = phoneNumber;
         this.email = email;
-        this.department = department;
+        this.roleId = roleId;
 
         System.out.println("Creating new user. Total: " + ++usersCounter);
 
@@ -182,8 +182,8 @@ public class User {
      *
      * @return The department in which the user belongs to.
      */
-    public String getDepartment() {
-        return department;
+    public String getRoleId() {
+        return roleId;
     }
 
     /**
@@ -191,8 +191,8 @@ public class User {
      *
      * @param department The new department.
      */
-    public void setDepartment(String department) {
-        this.department = department;
+    public void setRoleId(String roleId) {
+        this.roleId = roleId;
     }
 
     /**
@@ -210,6 +210,6 @@ public class User {
      * @return Returns a string containing all properties of this user.
      */
     public String toString() {
-        return "[User] username: " + username + ", password: ****, name: " + name + ", surname: " + surname + ", phone number: " + phoneNumber + " email: " + email + "  department: " + department;
+        return "[User] username: " + username + ", password: ****, name: " + name + ", surname: " + surname + ", phone number: " + phoneNumber + " email: " + email + "  role id: " + roleId;
     }
 }

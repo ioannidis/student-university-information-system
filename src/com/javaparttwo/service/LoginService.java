@@ -14,6 +14,10 @@ public class LoginService {
 	
 	private DataSource ds;
 	
+	public LoginService(DataSource ds) {
+		this.ds = ds;
+	}
+	
 	public User auth(String username, String password) {
 		
 		PreparedStatement stmt = null;
@@ -46,10 +50,6 @@ public class LoginService {
 		
 		return null;
 		
-	}
-
-	public void setResourse(DataSource ds) {
-		this.ds = ds;
 	}
 
 }

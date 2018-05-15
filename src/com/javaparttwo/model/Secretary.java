@@ -43,6 +43,6 @@ public class Secretary extends User {
      * @return Returns a string containing all properties of this secretary.
      */
     public String toString() {
-        return "[Secretary] username: " + getUsername() + ", name: " + getName() + ", surname: " + getSurname() + ", phone number: " + getPhoneNumber() + " , email: " + getEmail() + " department: " + getDepartment();
+        return "[Secretary] username: " + getUsername() + ", name: " + getName() + ", surname: " + getSurname() + ", phone number: " + getPhoneNumber() + " , email: " + getEmail() + " department: " + getRoleId();
     }
 }

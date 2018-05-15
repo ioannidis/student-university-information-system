@@ -43,6 +43,6 @@ public class Professor extends User {
      */
     public String toString() {
         return "[Professor] registration number: " + registrationNumber + ", username: " + getUsername() + ", name: " + getName()
-                + ", surname: " + getSurname() + ", phone number: " + getPhoneNumber() + " , email: " + getEmail() + " department: " + getDepartment();
+                + ", surname: " + getSurname() + ", phone number: " + getPhoneNumber() + " , email: " + getEmail() + " department: " + getRoleId();
     }
 }

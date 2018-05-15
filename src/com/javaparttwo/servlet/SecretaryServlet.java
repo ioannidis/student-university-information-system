@@ -17,9 +17,11 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import javax.sql.DataSource;
 
 import com.javaparttwo.model.Course;
+import com.javaparttwo.service.AuthService;
 import com.javaparttwo.service.CourseService;
 
 /**
@@ -31,7 +33,7 @@ public class SecretaryServlet extends HttpServlet {
 	
 	@Resource(name="jdbc/javapart2")
 	private DataSource ds;
-
+	
     /**
      * Default constructor. 
      */
@@ -43,6 +45,26 @@ public class SecretaryServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpSeSrvletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		AuthService auth = new AuthService(request, response);
+		HttpSession session = request.getSession();
+		
+		System.out.println(session.getAttribute("loggedIn"));
+		System.out.println(session.getAttribute("user"));
+		System.out.println(auth.isLoggedIn());
+		System.out.println(auth.hasRole("secretary"));
+		
+		if (!auth.isLoggedIn()) {
+			response.sendRedirect("login");
+			return;
+		}
+		
+		if (!auth.hasRole("secretary")) {
+			response.sendError(HttpServletResponse.SC_FORBIDDEN);
+			return;
+		}
+			
+		
 				
 		CourseService courseService = new CourseService(ds);
 		

@@ -12,6 +12,7 @@ import javax.servlet.http.HttpSession;
 import javax.sql.DataSource;
 
 import com.javaparttwo.model.User;
+import com.javaparttwo.service.AuthService;
 import com.javaparttwo.service.LoginService;
 
 /**
@@ -37,10 +38,26 @@ public class LoginServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		LoginService login = new LoginService();
+		AuthService auth = new AuthService(request, response);
 		HttpSession session = request.getSession();
 		
-		login.setResourse(ds);
+		System.out.println("einai login? " + auth.isLoggedIn());
+		if (auth.isLoggedIn()) {
+			User user = (User)session.getAttribute("user");
+			response.sendRedirect(user.getRoleId());
+		} else {
+			request.getRequestDispatcher("index.html").forward(request, response);
+		}
+
+	}
+
+	/**
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 */
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		LoginService login = new LoginService(ds);
+		HttpSession session = request.getSession();
 		
 		User user = login.auth(request.getParameter("username"), request.getParameter("password"));
 		
@@ -52,18 +69,10 @@ public class LoginServlet extends HttpServlet {
 			System.out.println(session);
 			System.out.println(session.getAttribute("loggedIn"));
 			
-			response.sendRedirect("secretary");
+			response.sendRedirect(user.getRoleId());
 		} else {
-			response.sendRedirect("index.html");
+			response.sendRedirect("login");
 		}
-	}
-
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doGet(request, response);
 	}
 
 }
