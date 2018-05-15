@@ -37,11 +37,10 @@ public class LoginServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
+		
 		AuthService auth = new AuthService(request, response);
 		HttpSession session = request.getSession();
 		
-		System.out.println("einai login? " + auth.isLoggedIn());
 		if (auth.isLoggedIn()) {
 			User user = (User)session.getAttribute("user");
 			response.sendRedirect(user.getRoleId());
@@ -63,11 +62,8 @@ public class LoginServlet extends HttpServlet {
 		
 		if (user != null) {
 			session = request.getSession();
-			System.out.println(session);
 			session.setAttribute("loggedIn", true);
 			session.setAttribute("user", user);
-			System.out.println(session);
-			System.out.println(session.getAttribute("loggedIn"));
 			
 			response.sendRedirect(user.getRoleId());
 		} else {

@@ -41,10 +41,13 @@ public class LoginService {
 						rs.getInt("phone_number"),
 						rs.getString("email"),
 						rs.getString("role_id"));
-			}			
+			}	
+			
+			rs.close();
+            stmt.close();
+            con.close();
 			
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		

@@ -49,11 +49,6 @@ public class SecretaryServlet extends HttpServlet {
 		AuthService auth = new AuthService(request, response);
 		HttpSession session = request.getSession();
 		
-		System.out.println(session.getAttribute("loggedIn"));
-		System.out.println(session.getAttribute("user"));
-		System.out.println(auth.isLoggedIn());
-		System.out.println(auth.hasRole("secretary"));
-		
 		if (!auth.isLoggedIn()) {
 			response.sendRedirect("login");
 			return;
@@ -63,8 +58,6 @@ public class SecretaryServlet extends HttpServlet {
 			response.sendError(HttpServletResponse.SC_FORBIDDEN);
 			return;
 		}
-			
-		
 				
 		CourseService courseService = new CourseService(ds);
 		
@@ -72,7 +65,7 @@ public class SecretaryServlet extends HttpServlet {
 		courses = courseService.getCourses();
 		
 		request.setAttribute("courses", courses);
-		request.getRequestDispatcher("secretary.jsp").forward(request, response);
+		request.getRequestDispatcher("WEB-INF/views/secretary/secretary.jsp").forward(request, response);
 
 	}
 
