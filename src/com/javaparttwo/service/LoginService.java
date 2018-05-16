@@ -11,7 +11,7 @@ import javax.sql.DataSource;
 import com.javaparttwo.model.User;
 
 public class LoginService {
-	
+
 	private DataSource ds;
 	
 	public LoginService(DataSource ds) {
@@ -20,18 +20,20 @@ public class LoginService {
 	
 	public User auth(String username, String password) {
 		
+		Connection con = null;
+		ResultSet rs = null;
 		PreparedStatement stmt = null;
 		
 		String str = "SELECT * FROM javapart2.users WHERE username=? AND password=?";
 
 		try {
-			Connection con = ds.getConnection();
+			con = ds.getConnection();
 			
 			stmt = con.prepareStatement(str);
 			stmt.setString(1, username);
 			stmt.setString(2, password);
 			
-			ResultSet rs = stmt.executeQuery();
+			rs = stmt.executeQuery();
 			
 			if (rs.next()) {
 				return new User(rs.getString("username"), 
@@ -43,12 +45,17 @@ public class LoginService {
 						rs.getString("role_id"));
 			}	
 			
-			rs.close();
-            stmt.close();
-            con.close();
-			
 		} catch (SQLException e) {
 			e.printStackTrace();
+		}
+		finally {
+			try {
+				rs.close();
+				stmt.close();
+	            con.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
 		}
 		
 		return null;

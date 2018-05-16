@@ -44,10 +44,6 @@ public class CourseService {
 						rs.getString("instructor_username")));
 			}
 			
-			rs.close();
-            stmt.close();
-            con.close();
-			
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -61,15 +57,7 @@ public class CourseService {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			} 
-			finally {
-				try {
-					rs.close();
-					stmt.close();
-		            con.close();
-				} catch (SQLException e) {
-					e.printStackTrace();
-				}          	
-			}
+			
 		}
 		
 		return courses;
