@@ -29,9 +29,9 @@
 					<th><c:out value="${course.teachingHours}" /></th>
 					<th><c:out value="${course.instructorUsername}" /></th>
 					<th>
-						<a href="course?id=${course.courseId}" class="btn">Show</a>
-						<a href="course?id=${course.courseId}&action=edit" class="btn">Edit</a>
-						<a href="course?id=${course.courseId}&action=delete" class="btn">Delete</a>
+						<a href="courses?id=${course.courseId}" class="btn">Show</a>
+						<a href="courses?id=${course.courseId}&action=edit" class="btn">Edit</a>
+						<a href="courses?id=${course.courseId}&action=delete" class="btn">Delete</a>
 					</th>
 				</tr>
 		    </c:forEach>
