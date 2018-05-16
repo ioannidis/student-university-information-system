@@ -45,7 +45,7 @@ public class LoginServlet extends HttpServlet {
 			User user = (User)session.getAttribute("user");
 			response.sendRedirect(user.getRoleId());
 		} else {
-			request.getRequestDispatcher("index.html").forward(request, response);
+			request.getRequestDispatcher("index.jsp").forward(request, response);
 		}
 
 	}
