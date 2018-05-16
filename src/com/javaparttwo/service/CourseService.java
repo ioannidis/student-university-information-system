@@ -10,7 +10,6 @@ import java.util.List;
 import javax.sql.DataSource;
 
 import com.javaparttwo.model.Course;
-import com.javaparttwo.model.User;
 
 public class CourseService {
 
@@ -108,9 +107,39 @@ public class CourseService {
 		return null;
 	}
 	
+	public void editCourse(String id, String title, String ects, String teachingHours, String instructorUsername) {
+		Connection con = null;
+		PreparedStatement stmt = null;
+		
+		String str = "UPDATE javapart2.courses "
+				+ "SET title=?, ects=?, teaching_hours=?, instructor_username=? "
+				+ "WHERE id=?";
+		try
+		{
+			con = ds.getConnection();
+			stmt = con.prepareStatement(str);
+			stmt.setString(1, title);
+			stmt.setString(2, ects);
+			stmt.setString(3, teachingHours);
+			stmt.setString(4, instructorUsername);
+			stmt.setString(5, id);
+			stmt.executeUpdate();
+		}
+		catch (SQLException e) {
+			e.printStackTrace();
+		}
+		finally {
+			try {
+				stmt.close();
+	            con.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}          	
+		}
+	}
+	
 	public Course deleteCourse(String id) {
 		Connection con = null;
-		ResultSet rs = null;
 		PreparedStatement stmt = null;
 		
 		String str = "DELETE FROM javapart2.courses WHERE id=?";

@@ -36,7 +36,7 @@ public class User {
     private String email;
 
     /**
-     * The department in which the user belongs to.
+     * The role of this user.
      */
     private String roleId;
 
@@ -45,14 +45,6 @@ public class User {
      */
     private static int usersCounter = 0;
 
-    /**
-     * Initializes all user details.
-     *
-     * @param username   The username representing this user.
-     * @param name       The first name of this user.
-     * @param surname    The last name of this user.
-     * @param department The department in which the user belongs to.
-     */
     public User(String username, String password, String name, String surname, int phoneNumber, String email, String roleId) {
         this.username = username;
         this.password = password;
@@ -177,20 +169,10 @@ public class User {
         this.email = email;
     }
 
-    /**
-     * Get the department in which the user belongs to.
-     *
-     * @return The department in which the user belongs to.
-     */
     public String getRoleId() {
         return roleId;
     }
 
-    /**
-     * Set the department in which the user belongs to.
-     *
-     * @param department The new department.
-     */
     public void setRoleId(String roleId) {
         this.roleId = roleId;
     }
