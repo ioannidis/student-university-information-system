@@ -7,9 +7,43 @@
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 	<title>Courses</title>
+<!-- Bootstrap core CSS-->
+  	<link href="<c:url value="/assets/css/bootstrap.min.css"/>" rel="stylesheet">
+  	<!-- Custom styles for this template-->
+  	<link href="<c:url value="/assets/css/sb-admin.min.css"/>" rel="stylesheet">
 </head>
-<body>
-	<table>
+<body class="fixed-nav sticky-footer bg-dark" id="page-top" cz-shortcut-listen="true">
+	<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" id="mainNav">
+	    <a class="navbar-brand" href="index.html">Start Bootstrap</a>
+	    <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+	      <span class="navbar-toggler-icon"></span>
+	    </button>
+	    <div class="collapse navbar-collapse" id="navbarResponsive">
+	      <ul class="navbar-nav navbar-sidenav" id="exampleAccordion">
+	        <li class="nav-item" data-toggle="tooltip" data-placement="right" title="" data-original-title="Dashboard">
+	          <a class="nav-link" href="<c:url value="/courses"/>">
+	            <i class="fa fa-fw fa-dashboard"></i>
+	            <span class="nav-link-text">Course list</span>
+	          </a>
+	        </li>
+	      </ul>
+	      <ul class="navbar-nav ml-auto">
+	        <li class="nav-item">
+	          <a href="<c:url value="/logout"/>" class="nav-link">
+	            <i class="fa fa-fw fa-sign-out"></i>Logout</a>
+	        </li>
+	      </ul>
+	   </div>
+	</nav>
+  
+	<div class="content-wrapper">
+	  <div class="container-fluid">
+	   <div class="card mb-3">
+	       <div class="card-header">
+	         <i class="fa fa-table"></i><b>Courses Table</b></div>
+	       <div class="card-body">
+	         <div class="table-responsive">
+			<table class="table table-bordered table-striped" id="dataTable" width="100%" cellspacing="0">
 		<thead>
 			<tr>
 				<th>Id</th>
@@ -17,7 +51,6 @@
 				<th>Ects</th>
 				<th>Teaching Hours</th>
 				<th>Instructor</th>
-				<th>Actions</th>
 			</tr>
 		</thead>
 		<tbody>
@@ -28,16 +61,28 @@
 					<th><c:out value="${course.ects}" /></th>
 					<th><c:out value="${course.teachingHours}" /></th>
 					<th><c:out value="${course.instructorUsername}" /></th>
-					<th>
-						<a href="courses?id=${course.courseId}&action=show" class="btn">Show</a>
-						<a href="courses?id=${course.courseId}&action=edit" class="btn">Edit</a>
-						<a href="courses?id=${course.courseId}&action=delete" class="btn">Delete</a>
-					</th>
 				</tr>
 		    </c:forEach>
 		</tbody>
 	</table>
+	</div>
+	        </div>
+	      </div>
+	  </div>
+	  <footer class="sticky-footer">
+	    <div class="container">
+	      <div class="text-center">
+	        <small>P16036 - P16097 - P16112</small>
+	      </div>
+	    </div>
+	  </footer>
+	</div>
 	
-	
+	<!-- Bootstrap core JavaScript-->
+  	<script src="<c:url value="/assets/js/jquery.min.js"/>"></script>
+  	<script src="<c:url value="/assets/js/bootstrap.bundle.min.js"/>"></script>
+  	<!-- Core plugin JavaScript-->
+  	<script src="<c:url value="/assets/js/jquery.easing.min.js"/>"></script>
+
 </body>
 </html>

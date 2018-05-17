@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Insert title here</title>
+<title>Single Course</title>
 <!-- Bootstrap core CSS-->
   	<link href="<c:url value="/assets/css/bootstrap.min.css"/>" rel="stylesheet">
   	<!-- Custom styles for this template-->
