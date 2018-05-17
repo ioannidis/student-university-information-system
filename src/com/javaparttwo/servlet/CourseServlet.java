@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.sql.DataSource;
 
 import com.javaparttwo.model.Course;
+import com.javaparttwo.service.AuthService;
 import com.javaparttwo.service.CourseService;
 import com.javaparttwo.service.ProfessorService;
 
@@ -27,19 +28,35 @@ public class CourseServlet extends HttpServlet {
     	//
     }
 
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {		
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		AuthService authService = new AuthService(request, response);
+		if (!authService.isLoggedIn()) {
+			response.sendRedirect("login");
+			return;
+		}
+		
 		CourseService courseService = new CourseService(ds);
 		String id = getParameterOrDefault(request, "id", "");
 		String action = getParameterOrDefault(request, "action", "all");
 		
 		switch(action) {
 			case "show": {
+				if (!authService.hasRole("secretary")) {
+					response.sendError(HttpServletResponse.SC_FORBIDDEN);
+					return;
+				}
+				
 				Course course = courseService.getCourse(id);
 				request.setAttribute("course", course);
 				request.getRequestDispatcher("WEB-INF/views/course/course.jsp").forward(request, response);
 				break;
 			}
 			case "edit": {
+				if (!authService.hasRole("secretary")) {
+					response.sendError(HttpServletResponse.SC_FORBIDDEN);
+					return;
+				}
+				
 				ProfessorService professorService = new ProfessorService(ds);
 				Course course = courseService.getCourse(id);
 				
@@ -49,8 +66,13 @@ public class CourseServlet extends HttpServlet {
 				break;
 			}
 			case "delete": {
+				if (!authService.hasRole("secretary")) {
+					response.sendError(HttpServletResponse.SC_FORBIDDEN);
+					return;
+				}
+				
 				courseService.deleteCourse(id);
-				response.sendRedirect("courses");
+				response.sendRedirect("secretary");
 				break;
 			}
 			default: {
@@ -80,7 +102,7 @@ public class CourseServlet extends HttpServlet {
 						getParameterOrDefault(request, "ects", Integer.toString(course.getEcts())),
 						getParameterOrDefault(request, "teachingHours", Integer.toString(course.getTeachingHours())),
 						getParameterOrDefault(request, "teachingInstructor", course.getInstructorUsername()));
-				response.sendRedirect("courses");
+				response.sendRedirect("secretary");
 				break;
 			}
 			default: {
