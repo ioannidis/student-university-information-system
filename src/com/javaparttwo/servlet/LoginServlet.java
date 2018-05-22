@@ -38,7 +38,7 @@ public class LoginServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
 	    throws ServletException, IOException {
 
-	AuthService auth = new AuthService(request, response);
+	AuthService auth = new AuthService(request.getSession());
 	HttpSession session = request.getSession();
 
 	if (auth.isLoggedIn()) {

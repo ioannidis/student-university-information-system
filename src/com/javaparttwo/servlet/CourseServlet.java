@@ -38,7 +38,7 @@ public class CourseServlet extends HttpServlet {
      */
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
 	    throws ServletException, IOException {
-	AuthService authService = new AuthService(request, response);
+	AuthService authService = new AuthService(request.getSession());
 	if (!authService.isLoggedIn()) {
 	    response.sendRedirect("login");
 	    return;
