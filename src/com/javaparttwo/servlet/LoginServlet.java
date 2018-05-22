@@ -16,59 +16,59 @@ import com.javaparttwo.service.AuthService;
 import com.javaparttwo.service.LoginService;
 
 /**
- * Servlet implementation class Login
+ * Handles login requests and responses.
  */
 @WebServlet({ "/LoginServlet", "/login" })
 public class LoginServlet extends HttpServlet {
-	private static final long serialVersionUID = 1L;
-	
-	@Resource(name="jdbc/javapart2")
-	private DataSource ds;
-       
+    
     /**
-     * @see HttpServlet#HttpServlet()
+     * Java related serial version UID.
      */
-    public LoginServlet() {
-        super();
-        // TODO Auto-generated constructor stub
+    private static final long serialVersionUID = 1L;
+
+    /**
+     * An instance of the database connection.
+     */
+    @Resource(name = "jdbc/javapart2")
+    private DataSource ds;
+
+    /**
+     * Handles all GET requests.
+     */
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+	    throws ServletException, IOException {
+
+	AuthService auth = new AuthService(request, response);
+	HttpSession session = request.getSession();
+
+	if (auth.isLoggedIn()) {
+	    User user = (User) session.getAttribute("user");
+	    response.sendRedirect(user.getRoleId());
+	} else {
+	    request.getRequestDispatcher("index.jsp").forward(request, response);
+	}
+
     }
 
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-		AuthService auth = new AuthService(request, response);
-		HttpSession session = request.getSession();
-		
-		if (auth.isLoggedIn()) {
-			User user = (User)session.getAttribute("user");
-			response.sendRedirect(user.getRoleId());
-		} else {
-			request.getRequestDispatcher("index.jsp").forward(request, response);
-		}
+    /**
+     * Handles all POST requests.
+     */
+    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+	    throws ServletException, IOException {
 
+	LoginService login = new LoginService(ds);
+	HttpSession session = request.getSession();
+
+	User user = login.auth(request.getParameter("username"), request.getParameter("password"));
+
+	if (user != null) {
+	    session = request.getSession();
+	    session.setAttribute("loggedIn", true);
+	    session.setAttribute("user", user);
+
+	    response.sendRedirect(user.getRoleId());
+	} else {
+	    response.sendRedirect("login");
 	}
-
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-		LoginService login = new LoginService(ds);
-		HttpSession session = request.getSession();
-		
-		User user = login.auth(request.getParameter("username"), request.getParameter("password"));
-		
-		if (user != null) {
-			session = request.getSession();
-			session.setAttribute("loggedIn", true);
-			session.setAttribute("user", user);
-			
-			response.sendRedirect(user.getRoleId());
-		} else {
-			response.sendRedirect("login");
-		}
-	}
-
+    }
 }

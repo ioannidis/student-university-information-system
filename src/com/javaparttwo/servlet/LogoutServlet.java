@@ -11,28 +11,38 @@ import javax.servlet.http.HttpSession;
 
 import com.javaparttwo.service.AuthService;
 
+/**
+ * Handles logout requests and responses.
+ */
 @WebServlet({ "/LogoutServlet", "/logout" })
 public class LogoutServlet extends HttpServlet {
-	private static final long serialVersionUID = 1L;
+    
+    /**
+     * Java related serial version UID.
+     */
+    private static final long serialVersionUID = 1L;
 
-    public LogoutServlet() {
-        super();
+    /**
+     * Handles all GET requests.
+     */
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+	    throws ServletException, IOException {
+	AuthService auth = new AuthService(request, response);
+
+	if (auth.isLoggedIn()) {
+	    HttpSession session = request.getSession();
+	    session.setAttribute("loggedIn", false);
+	    session.setAttribute("user", null);
+	}
+
+	response.sendRedirect("login");
     }
 
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		AuthService auth = new AuthService(request, response);
-		
-		if (auth.isLoggedIn()) {
-			HttpSession session = request.getSession();
-			session.setAttribute("loggedIn", false);
-			session.setAttribute("user", null);
-		}
-		
-		response.sendRedirect("login");
-	}
-
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		doGet(request, response);
-	}
-
+    /**
+     * Handles all POST requests.
+     */
+    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+	    throws ServletException, IOException {
+	doGet(request, response);
+    }
 }
