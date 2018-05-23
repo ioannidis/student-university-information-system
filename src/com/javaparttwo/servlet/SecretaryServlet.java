@@ -57,7 +57,7 @@ public class SecretaryServlet extends HttpServlet {
 	courses = courseService.getCourses();
 
 	request.setAttribute("courses", courses);
-	request.getRequestDispatcher("WEB-INF/views/secretary/secretary.jsp").forward(request, response);
+	request.getRequestDispatcher("WEB-INF/views/secretary/index.jsp").forward(request, response);
     }
 
     /**

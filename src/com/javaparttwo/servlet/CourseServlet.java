@@ -57,7 +57,7 @@ public class CourseServlet extends HttpServlet {
 
 	    Course course = courseService.getCourse(id);
 	    request.setAttribute("course", course);
-	    request.getRequestDispatcher("WEB-INF/views/course/course.jsp").forward(request, response);
+	    request.getRequestDispatcher("WEB-INF/views/course/show.jsp").forward(request, response);
 	    break;
 	}
 	case "edit": {
@@ -87,7 +87,7 @@ public class CourseServlet extends HttpServlet {
 	default: {
 	    List<Course> courses = courseService.getCourses();
 	    request.setAttribute("courses", courses);
-	    request.getRequestDispatcher("WEB-INF/views/course/courses.jsp").forward(request, response);
+	    request.getRequestDispatcher("WEB-INF/views/course/index.jsp").forward(request, response);
 	    break;
 	}
 	}
