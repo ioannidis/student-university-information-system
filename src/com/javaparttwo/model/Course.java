@@ -2,7 +2,7 @@ package com.javaparttwo.model;
 
 public class Course {
 
-	/**
+    /**
      * The id of this course.
      */
     private String courseId;
@@ -11,9 +11,9 @@ public class Course {
      * The title of this course.
      */
     private String title;
-    
+
     /**
-     * The department in which this course belongs to.
+     * The instructor of this course.
      */
     private String instructorUsername;
 
@@ -30,22 +30,26 @@ public class Course {
     /**
      * Initializes all course details.
      *
-     * @param courseID      The id of this course.
-     * @param title         The title of this course.
-     * @param department    The department in which this course belongs to.
-     * @param teachingHours The teaching hours of this course.
-     * @param ects          The ETCS of this course.
+     * @param courseID
+     *            The id of this course.
+     * @param title
+     *            The title of this course.
+     * @param ects
+     *            The ETCS of this course.
+     * @param teachingHours
+     *            The teaching hours of this course.
+     * @param instructorUsername
+     *            The instructor of this course.
      */
-    public Course(String courseId, String title, int ects,  int teachingHours,String instructorUsername) {
-        this.courseId = courseId;
-        this.title = title;
-        this.ects = ects;
-        this.teachingHours = teachingHours;
-        this.instructorUsername = instructorUsername;
+    public Course(String courseId, String title, int ects, int teachingHours, String instructorUsername) {
+	this.courseId = courseId;
+	this.title = title;
+	this.ects = ects;
+	this.teachingHours = teachingHours;
+	this.instructorUsername = instructorUsername;
 
-        // Creation message
-        System.out.println("[Course] CourseID: " + courseId + ", Title: " + title + ", Teaching Hours: "
-                + teachingHours + " Ects: " + ects + ", Instructor: " + instructorUsername);
+	// Creation message
+	System.out.println(this + System.lineSeparator());
     }
 
     /**
@@ -54,16 +58,17 @@ public class Course {
      * @return The id of this course.
      */
     public String getCourseId() {
-        return courseId;
+	return courseId;
     }
-    
+
     /**
      * Set the title of this course.
      *
-     * @param title The new title.
+     * @param title
+     *            The new title.
      */
     public void setCourseId(String courseId) {
-        this.courseId = courseId;
+	this.courseId = courseId;
     }
 
     /**
@@ -72,34 +77,36 @@ public class Course {
      * @return The title of this course.
      */
     public String getTitle() {
-        return title;
+	return title;
     }
 
     /**
      * Set the title of this course.
      *
-     * @param title The new title.
+     * @param title
+     *            The new title.
      */
     public void setTitle(String title) {
-        this.title = title;
+	this.title = title;
     }
 
     /**
-     * Get the department in which this course belongs to.
+     * Get the instructor of this course.
      *
-     * @return The department in which this course belongs to.
+     * @return The instructor of this course.
      */
     public String getInstructorUsername() {
-        return instructorUsername;
+	return instructorUsername;
     }
 
     /**
-     * Set the department in which this course belongs to.
+     * Set the instructor of this course.
      *
-     * @param department The new department.
+     * @param department
+     *            The new instructor.
      */
     public void setInstructorUsername(String instructorUsername) {
-        this.instructorUsername = instructorUsername;
+	this.instructorUsername = instructorUsername;
     }
 
     /**
@@ -108,16 +115,17 @@ public class Course {
      * @return The teaching hours of this course.
      */
     public int getTeachingHours() {
-        return teachingHours;
+	return teachingHours;
     }
 
     /**
      * Set the teaching hours of this course.
      *
-     * @param teachingHours The new teaching hours.
+     * @param teachingHours
+     *            The new teaching hours.
      */
     public void setTeachingHours(int teachingHours) {
-        this.teachingHours = teachingHours;
+	this.teachingHours = teachingHours;
     }
 
     /**
@@ -126,15 +134,26 @@ public class Course {
      * @return The ETCS of this course.
      */
     public int getEcts() {
-        return ects;
+	return ects;
     }
 
     /**
      * Set the ETCS of this course.
      *
-     * @param ects The new ETCS.
+     * @param ects
+     *            The new ETCS.
      */
     public void setEcts(int ects) {
-        this.ects = ects;
+	this.ects = ects;
+    }
+
+    /**
+     * Overrides toString() method.
+     *
+     * @return Returns a string containing all properties of this course.
+     */
+    public String toString() {
+	return "[Course] CourseID: " + courseId + ", Title: " + title + ", Teaching Hours: " + teachingHours + " Ects: "
+		+ ects + ", Instructor: " + instructorUsername;
     }
 }
