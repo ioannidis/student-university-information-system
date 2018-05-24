@@ -1,5 +1,8 @@
 package com.javaparttwo.model;
 
+/**
+ * Represents all courses of our application.
+ */
 public class Course {
 
     /**

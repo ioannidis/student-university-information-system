@@ -11,13 +11,16 @@ import javax.servlet.annotation.WebFilter;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+/**
+ * Blocks pages for non-authenticated users when the Back button is used.
+ *
+ */
 @WebFilter("/*")
 public class NoCacheFilter implements Filter {
 
-    public NoCacheFilter() {
-	//
-    }
-
+    /**
+     * Filters pages appropriately.
+     */
     @Override
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
 	    throws IOException, ServletException {
@@ -30,6 +33,5 @@ public class NoCacheFilter implements Filter {
 	res.setDateHeader("Expires", 0);
 
 	chain.doFilter(request, response);
-
     }
 }
