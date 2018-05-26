@@ -169,7 +169,7 @@ public class User {
     /**
      * Set the last name of this user.
      *
-     * @param surname
+     * @param phoneNumber
      *            The new last name.
      */
     public void setPhoneNumber(int phoneNumber) {
@@ -188,7 +188,7 @@ public class User {
     /**
      * Set the last name of this user.
      *
-     * @param surname
+     * @param email
      *            The new last name.
      */
     public void setEmail(String email) {

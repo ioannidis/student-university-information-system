@@ -33,7 +33,7 @@ public class Course {
     /**
      * Initializes all course details.
      *
-     * @param courseID
+     * @param courseId
      *            The id of this course.
      * @param title
      *            The title of this course.
@@ -67,7 +67,7 @@ public class Course {
     /**
      * Set the title of this course.
      *
-     * @param title
+     * @param courseId
      *            The new title.
      */
     public void setCourseId(String courseId) {
@@ -105,7 +105,7 @@ public class Course {
     /**
      * Set the instructor of this course.
      *
-     * @param department
+     * @param instructorUsername
      *            The new instructor.
      */
     public void setInstructorUsername(String instructorUsername) {
