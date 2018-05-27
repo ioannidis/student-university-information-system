@@ -51,7 +51,7 @@ public class ProfessorService {
 	    while (rs.next()) {
 		professors.add(
 			new User(rs.getString("username"), null, rs.getString("first_name"), rs.getString("last_name"),
-				rs.getInt("phone_number"), rs.getString("email"), rs.getString("role_id")));
+				rs.getLong("phone_number"), rs.getString("email"), rs.getString("role_id")));
 	    }
 	} catch (SQLException e) {
 	    e.printStackTrace();
