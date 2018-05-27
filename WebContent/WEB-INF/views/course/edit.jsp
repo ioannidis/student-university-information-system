@@ -29,19 +29,19 @@
 		</div>
 		<div class="form-group">
 			<label for="title"><strong>Course Title</strong></label>
-			<input type="text" class="form-control"  name="title" id="title" value="${course.title}" />
+			<input type="text" class="form-control"  name="title" id="title" value="${course.title}" required />
 		</div>
 		<div class="form-group">
 			<label for="ects"><strong>Course ECTs</strong></label>
-			<input type="text" class="form-control"  name="ects" id="ects" value="${course.ects}" />
+			<input type="number" class="form-control"  name="ects" id="ects" value="${course.ects}" required/>
 		</div>
 		<div class="form-group">
 			<label for="teachingHours"><strong>Teaching Hours</strong></label>
-			<input type="text" class="form-control"  name="teachingHours" id="teachingHours" value="${course.teachingHours}" />
+			<input type="number" class="form-control"  name="teachingHours" id="teachingHours" value="${course.teachingHours}" required />
 		</div>
 		<div class="form-group">
 		<label for="teachingInstructor"><strong>Select Instructor</strong></label>
-			<select class="form-control" name="teachingInstructor" id="teachingInstructor">
+			<select class="form-control" name="teachingInstructor" id="teachingInstructor" required>
 				<c:forEach items="${ instructors }" var="professor">
 					<option value="<c:out value="${ professor.username }"/>" <c:if test="${course.instructorUsername == professor.username}">selected</c:if> >
 						<c:out value="${ professor.name } ${ professor.surname } (${ professor.username})" />
