@@ -8,5 +8,7 @@
 </head>
 <body>
 	<h2>This feature will be available in the 3rd part of the exercise!</h2>
+	<a href="logout" class="nav-link">
+	            <i class="fa fa-fw fa-sign-out"></i>Logout</a>
 </body>
 </html>
