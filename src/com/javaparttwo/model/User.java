@@ -74,11 +74,6 @@ public class User {
 	this.email = email;
 	this.roleId = roleId;
 
-	System.out.println("Creating new user. Total: " + ++usersCounter);
-
-	// Display creation message on.
-	if (usersCounter == 1)
-	    System.out.println(this + System.lineSeparator());
     }
 
     /**

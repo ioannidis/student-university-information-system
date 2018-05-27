@@ -51,8 +51,6 @@ public class Course {
 	this.teachingHours = teachingHours;
 	this.instructorUsername = instructorUsername;
 
-	// Creation message
-	System.out.println(this + System.lineSeparator());
     }
 
     /**
