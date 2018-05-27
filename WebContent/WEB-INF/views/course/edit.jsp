@@ -33,11 +33,11 @@
 		</div>
 		<div class="form-group">
 			<label for="ects"><strong>Course ECTs</strong></label>
-			<input type="number" class="form-control"  name="ects" id="ects" value="${course.ects}" required/>
+			<input type="number" min="0" max="10" class="form-control"  name="ects" id="ects" value="${course.ects}" required/>
 		</div>
 		<div class="form-group">
 			<label for="teachingHours"><strong>Teaching Hours</strong></label>
-			<input type="number" class="form-control"  name="teachingHours" id="teachingHours" value="${course.teachingHours}" required />
+			<input type="number" min="1" max="100" class="form-control"  name="teachingHours" id="teachingHours" value="${course.teachingHours}" required />
 		</div>
 		<div class="form-group">
 		<label for="teachingInstructor"><strong>Select Instructor</strong></label>
