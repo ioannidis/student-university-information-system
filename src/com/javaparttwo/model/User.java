@@ -39,6 +39,11 @@ public class User {
      * The role of this user.
      */
     private String roleId;
+    
+    /**
+     * The department id of this user.
+     */
+    private String departmentId;
 
     /**
      * The total number of user objects created during the runtime of this
@@ -65,7 +70,7 @@ public class User {
      *            The role of the user.
      */
     public User(String username, String password, String name, String surname, long phoneNumber, String email,
-	    String roleId) {
+	    String roleId, String department) {
 	this.username = username;
 	this.password = password;
 	this.name = name;
@@ -73,6 +78,7 @@ public class User {
 	this.phoneNumber = phoneNumber;
 	this.email = email;
 	this.roleId = roleId;
+	this.departmentId = department;
 
     }
 
@@ -218,6 +224,25 @@ public class User {
      */
     public static int getUsersCounter() {
 	return usersCounter;
+    }
+    
+    /**
+     * Get the role of the user.
+     * 
+     * @return The role of the user.
+     */
+    public String getDepartmentId() {
+	return departmentId;
+    }
+
+    /**
+     * Set the role of the user.
+     * 
+     * @param roleId
+     *            The new role of the user.
+     */
+    public void setDepartmentId(String departmentId) {
+	this.departmentId = departmentId;
     }
 
     /**

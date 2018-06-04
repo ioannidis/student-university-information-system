@@ -38,6 +38,24 @@
 	        </li>
 	        </c:if>
 	        <!-- End role specific menu  -->
+	        
+	        <!-- Role specific menu  -->
+	        <c:if test="${user.roleId=='student'}">
+	        <li class="nav-item" data-toggle="tooltip" data-placement="right" title="" data-original-title="Secretary Actions">
+	        	<a class="nav-link" href="#" style="color:#fff !important; padding-bottom: 0px;">
+	        		<b>Secretary Actions</b>
+	        	</a>
+	        	<ul class="sidenav-second-level">
+	        		<li class="nav-item" data-toggle="tooltip" data-placement="right" title="" data-original-title="Manage Courses">
+			          <a class="nav-link" href="<c:url value="/grades"/>">
+			            <i class="fa fa-fw fa-dashboard"></i>
+			            <span class="nav-link-text">Grades</span>
+			          </a>
+			        </li>
+        		</ul>
+	        </li>
+	        </c:if>
+	        <!-- End role specific menu  -->
 	    	
 	      </ul>
 	      <ul class="navbar-nav ml-auto">

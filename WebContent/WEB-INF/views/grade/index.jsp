@@ -28,23 +28,27 @@
 		<tbody>
 			<tr>
 				<td><b>Username</b></td>
-				<td><c:out value="${user.username}" /></td>
+				<td><c:out value="${grade.courseId}" /></td>
 			</tr>
 			<tr>
 				<td><b>Name</b></td>
-				<td><c:out value="${user.name}" /></td>
+				<td><c:out value="${grade.title}" /></td>
 			</tr>
 			<tr>
 				<td><b>Surname</b></td>
-				<td><c:out value="${user.surname}" /></td>
+				<td><c:out value="${grade.ects}" /></td>
 			</tr>
 			<tr>
 				<td><b>Phone</b></td>
-				<td><c:out value="${user.phoneNumber}" /></td>
+				<td><c:out value="${grade.teachingHours}" /></td>
 			</tr>
 			<tr>
 				<td><b>Email</b></td>
-				<td><c:out value="${user.email}" /></td>
+				<td><c:out value="${grade.instructorUsername}" /></td>
+			</tr>
+			<tr>
+				<td><b>Email</b></td>
+				<td><c:out value="${grade.grade}" /></td>
 			</tr>
 		</tbody>
 	</table>

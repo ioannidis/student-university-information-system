@@ -54,7 +54,7 @@ public class CourseService {
 
 	    while (rs.next()) {
 		courses.add(new Course(rs.getString("id"), rs.getString("title"), rs.getInt("ects"),
-			rs.getInt("teaching_hours"), rs.getString("instructor_username")));
+			rs.getInt("teaching_hours"), rs.getString("instructor_username"), rs.getInt("semester"), rs.getString("department")));
 	    }
 
 	} catch (SQLException e) {
@@ -97,12 +97,8 @@ public class CourseService {
 
 	    if (rs.next()) {
 		return new Course(rs.getString("id"), rs.getString("title"), rs.getInt("ects"),
-			rs.getInt("teaching_hours"), rs.getString("instructor_username"));
+			rs.getInt("teaching_hours"), rs.getString("instructor_username"), rs.getInt("semester"), rs.getString("department_id"));
 	    }
-
-	    rs.close();
-	    stmt.close();
-	    con.close();
 
 	} catch (SQLException e) {
 	    e.printStackTrace();

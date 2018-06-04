@@ -29,6 +29,16 @@ public class Course {
      * The ETCS of this course.
      */
     private int ects;
+    
+    /**
+     * The semester of this course.
+     */
+    private int semester;
+    
+    /**
+     * The department_id of this course.
+     */
+    private String departmentId;
 
     /**
      * Initializes all course details.
@@ -44,12 +54,14 @@ public class Course {
      * @param instructorUsername
      *            The instructor of this course.
      */
-    public Course(String courseId, String title, int ects, int teachingHours, String instructorUsername) {
+    public Course(String courseId, String title, int ects, int teachingHours, String instructorUsername, int semester, String department) {
 	this.courseId = courseId;
 	this.title = title;
 	this.ects = ects;
 	this.teachingHours = teachingHours;
 	this.instructorUsername = instructorUsername;
+	this.semester = semester;
+	this.departmentId = department;
 
     }
 
@@ -146,6 +158,44 @@ public class Course {
      */
     public void setEcts(int ects) {
 	this.ects = ects;
+    }
+    
+    /**
+     * Get the semester of this course.
+     *
+     * @return The semester of this course.
+     */
+    public int getSemester() {
+	return semester;
+    }
+
+    /**
+     * Set the semester of this course.
+     *
+     * @param semester
+     *            The new semester.
+     */
+    public void setSemester(int semester) {
+	this.semester = semester;
+    }
+    
+    /**
+     * Get the department_id of this course.
+     *
+     * @return The departmentId of this course.
+     */
+    public String getDepartmentId() {
+	return departmentId;
+    }
+
+    /**
+     * Set the department_id of this course.
+     *
+     * @param departmentId
+     *            The new department_id.
+     */
+    public void setDepartmentId(String departmentId) {
+	this.departmentId = departmentId;
     }
 
     /**

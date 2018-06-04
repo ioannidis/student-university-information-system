@@ -50,5 +50,9 @@ public class AuthService {
 	}
 	return false;
     }
+    
+    public User getUser() {
+    	return (session.getAttribute("user") != null) ? (User) session.getAttribute("user") : null;
+    }
 
 }
