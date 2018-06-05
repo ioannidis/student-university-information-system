@@ -1,6 +1,8 @@
 package com.javaparttwo.servlet;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.annotation.Resource;
 import javax.servlet.ServletException;
@@ -64,6 +66,7 @@ public class StudentGradeServlet extends HttpServlet {
     	String sortBy = getParameterOrDefault(request, "sortBy", "lesson");
     	String courseId = getParameterOrDefault(request, "courseId", null);
     	
+    	// Show single grade
     	if (courseId != null) {
     		CourseService courseService = new CourseService(ds);
     		Course course = courseService.getCourse(courseId);
@@ -79,30 +82,45 @@ public class StudentGradeServlet extends HttpServlet {
     		}
     		
     		Grade grade = gradeService.getGrade(user.getUsername(), courseId);
+    		
+    		if (grade == null)
+    			grade = new Grade(course.getCourseId(), course.getTitle(), course.getEcts(), course.getTeachingHours(), course.getInstructorUsername(), -1, course.getSemester(), course.getDepartmentId());
+    		
     	    request.setAttribute("grade", grade);
-    	    request.getRequestDispatcher("WEB-INF/views/grade/index.jsp").forward(request, response);
+    	    request.getRequestDispatcher("WEB-INF/views/grade/show.jsp").forward(request, response);
+
+    		
     	    return;
     	}
     	
+    	// show all grades
     	switch (sortBy) {
-	    	case "semester": {
-	    	   
-	    	    //request.setAttribute("course", course);
-	    	    request.getRequestDispatcher("WEB-INF/views/grade/index.jsp").forward(request, response);
-	    	    break;
+	    	case "list": {
+	    		request.setAttribute("sortBy", "courses");
+	    		break;
 	    	}
 	    	case "average": {
-	    	   	
-	    	    ProfessorService professorService = new ProfessorService(ds);
-	
-	    	    //request.setAttribute("course", course);
-	    	    request.setAttribute("instructors", professorService.getProfessors());
-	    	    request.getRequestDispatcher("WEB-INF/views/grade/index.jsp").forward(request, response);
+	    		request.setAttribute("sortBy", "average");
 	    	    break;
 	    	}
-	    	case "course":
+	    	case "semester":
 	    	default: {
-	    	    
+	    		List<Grade> grades = gradeService.getGradesBySemester(user.getUsername(), user.getDepartmentId());
+	    		
+        		ArrayList<ArrayList<Grade>> gradesBySemester = new ArrayList<ArrayList<Grade>>(8);
+	    		if (!grades.isEmpty()) {
+	        		for(int i = 0; i < 8; i++) {
+	        			gradesBySemester.add(new ArrayList<Grade>());
+	        		}
+	        		
+	        		for(Grade grade: grades) {
+	        			gradesBySemester.get(grade.getSemester()-1).add(grade);
+	        		}
+	        	}
+	    		
+	    		request.setAttribute("grades", gradesBySemester);
+	    		request.setAttribute("sortBy", "semester");
+	    		request.getRequestDispatcher("WEB-INF/views/grade/index.jsp").forward(request, response);
 	    	    break;
 	    	}
     	}

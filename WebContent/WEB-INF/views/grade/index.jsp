@@ -19,42 +19,18 @@
   
 	<div class="content-wrapper">
 	  <div class="container-fluid">
-	   <div class="card mb-3">
-	       <div class="card-header">
-	         <i class="fa fa-table"></i><b>Course</b></div>
-	       <div class="card-body">
-	         <div class="table-responsive">
-	<table class="table table-bordered table-striped" id="dataTable" width="100%" cellspacing="0">
-		<tbody>
-			<tr>
-				<td><b>Username</b></td>
-				<td><c:out value="${grade.courseId}" /></td>
-			</tr>
-			<tr>
-				<td><b>Name</b></td>
-				<td><c:out value="${grade.title}" /></td>
-			</tr>
-			<tr>
-				<td><b>Surname</b></td>
-				<td><c:out value="${grade.ects}" /></td>
-			</tr>
-			<tr>
-				<td><b>Phone</b></td>
-				<td><c:out value="${grade.teachingHours}" /></td>
-			</tr>
-			<tr>
-				<td><b>Email</b></td>
-				<td><c:out value="${grade.instructorUsername}" /></td>
-			</tr>
-			<tr>
-				<td><b>Email</b></td>
-				<td><c:out value="${grade.grade}" /></td>
-			</tr>
-		</tbody>
-	</table>
-	</div>
-	        </div>
-	      </div>
+	  
+		<div class="btn-group">
+			    <a href="studentgrades?sortBy=all" class="btn btn-info ${sortBy == 'list' ? 'active' : ''}" >List</a>
+
+		    	<a href="studentgrades?sortBy=semester" class="btn btn-info ${sortBy == 'semester' ? 'active' : ''}" >Semester</a>
+
+		    	<a href="studentgrades?sortBy=average" class="btn btn-info ${sortBy == 'average' ? 'active' : ''}" >Average</a>
+		</div>
+		
+		<c:if test="${sortBy == 'semester'}">
+			<c:import url="/WEB-INF/views/grade/sortBy/semester.jsp" />
+		</c:if>
 	  </div>
 	  <footer class="sticky-footer">
 	    <div class="container">
