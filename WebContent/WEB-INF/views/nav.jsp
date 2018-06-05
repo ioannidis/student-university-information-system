@@ -47,7 +47,7 @@
 	        	</a>
 	        	<ul class="sidenav-second-level">
 	        		<li class="nav-item" data-toggle="tooltip" data-placement="right" title="" data-original-title="Manage Courses">
-			          <a class="nav-link" href="<c:url value="/grades"/>">
+			          <a class="nav-link" href="<c:url value="/studentgrades"/>">
 			            <i class="fa fa-fw fa-dashboard"></i>
 			            <span class="nav-link-text">Grades</span>
 			          </a>
