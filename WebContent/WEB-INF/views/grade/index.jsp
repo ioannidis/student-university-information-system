@@ -17,17 +17,29 @@
 	<div class="content-wrapper">
 	  <div class="container-fluid">
 	  
-		<div class="btn-group">
-			    <a href="studentgrades?sortBy=all" class="btn btn-info ${sortBy == 'list' ? 'active' : ''}" >List</a>
-
-		    	<a href="studentgrades?sortBy=semester" class="btn btn-info ${sortBy == 'semester' ? 'active' : ''}" >Semester</a>
-
-		    	<a href="studentgrades?sortBy=average" class="btn btn-info ${sortBy == 'average' ? 'active' : ''}" >Average</a>
+		<div>
+			<span>Sort by:</span>
+			<div class="btn-group">
+				<a href="studentgrades?sortBy=average" class="btn btn-info ${sortBy == 'average' ? 'active' : ''}" >Average</a>
+			    <a href="studentgrades?sortBy=list" class="btn btn-info ${sortBy == 'list' ? 'active' : ''}" >List</a>
+			   	<a href="studentgrades?sortBy=semester" class="btn btn-info ${sortBy == 'semester' ? 'active' : ''}" >Semester</a>
+			</div>
 		</div>
+
+		<br/>
 		
-		<c:if test="${sortBy == 'semester'}">
-			<c:import url="/WEB-INF/views/grade/sortBy/semester.jsp" />
-		</c:if>
+		<c:choose>
+			<c:when test="${sortBy == 'list'}">
+				<c:import url="/WEB-INF/views/grade/sortBy/list.jsp" />
+			</c:when>
+			<c:when test="${sortBy == 'semester'}">
+				<c:import url="/WEB-INF/views/grade/sortBy/semester.jsp" />
+			</c:when>
+			<c:when test="${sortBy == 'average'}">
+				<c:import url="/WEB-INF/views/grade/sortBy/average.jsp" />
+			</c:when>
+		</c:choose>
+
 	  </div>
 	  <c:import url="/WEB-INF/views/footer.jsp"></c:import>
 	</div>
