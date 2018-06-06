@@ -36,19 +36,21 @@ public class CourseService {
      * 
      * @return The list of courses.
      */
-    public List<Course> getCourses() {
+    public List<Course> getCourses(String departmentId) {
 	List<Course> courses = new ArrayList<>();
 
 	Connection con = null;
 	ResultSet rs = null;
 	PreparedStatement stmt = null;
 
-	String str = "SELECT * FROM javapart2.courses";
+	String str = "SELECT * FROM javapart2.courses WHERE department_id=?";
 
 	try {
 	    con = ds.getConnection();
 
 	    stmt = con.prepareStatement(str);
+	    stmt.setString(1, departmentId);
+
 
 	    rs = stmt.executeQuery();
 
