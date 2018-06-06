@@ -11,5 +11,9 @@ $(document).ready(function() {
     $('table.table-average').DataTable({
     	"paging": false
     });
+    
+    $('table.prof-courses').DataTable({
+    	"iDisplayLength": 25
+    });
 } );
 
