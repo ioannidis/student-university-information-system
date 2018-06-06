@@ -35,10 +35,10 @@
 							<th>
 								<c:choose>
 								    <c:when test="${grade.grade=='-1'}">
-								        - 
+								        <span style="color:red">-</span>
 								    </c:when>    
 								    <c:otherwise>
-								        <c:out value="${grade.grade}" />
+								        <span style="color:red"><c:out value="${grade.grade}" /></span>
 								    </c:otherwise>
 								</c:choose>
 							</th>
