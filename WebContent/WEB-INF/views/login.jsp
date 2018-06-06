@@ -5,12 +5,9 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<meta charset="UTF-8">
-<title>Java Part Two Login</title>
-  <!-- Bootstrap core CSS-->
-  <link href="<c:url value="/assets/css/bootstrap.min.css"/>" rel="stylesheet">
-  <!-- Custom styles for this template-->
-  <link href="<c:url value="/assets/css/sb-admin.min.css"/>" rel="stylesheet">
+	<meta charset="UTF-8">
+	<title>Java Part Two Login</title>
+	<c:import url="/WEB-INF/views/styles.jsp"></c:import>
 </head>
 <body class="bg-dark">
  	<div class="container">
@@ -33,10 +30,6 @@
     	</div>
   </div>
 
-  <!-- Bootstrap core JavaScript-->
-  <script src="<c:url value="/assets/js/jquery.min.js"/>"></script>
-  <script src="<c:url value="/assets/js/bootstrap.bundle.min.js"/>"></script>
-  <!-- Core plugin JavaScript-->
-  <script src="<c:url value="/assets/js/jquery.easing.min.js"/>"></script>
+	<c:import url="/WEB-INF/views/scripts.jsp"></c:import>
 </body>
 </html>

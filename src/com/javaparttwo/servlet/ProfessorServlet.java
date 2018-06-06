@@ -1,8 +1,6 @@
 package com.javaparttwo.servlet;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
 
 import javax.annotation.Resource;
 import javax.servlet.ServletException;
@@ -12,9 +10,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.sql.DataSource;
 
-import com.javaparttwo.model.Course;
 import com.javaparttwo.service.AuthService;
-import com.javaparttwo.service.CourseService;
+import com.javaparttwo.service.ProfessorService;
 
 /**
  * Handles instructor requests and responses.
@@ -51,6 +48,9 @@ public class ProfessorServlet extends HttpServlet {
     	    return;
     	}
     	
+    	ProfessorService service = new ProfessorService(ds);
+    	
+    	request.setAttribute("gradedCourses", service.getGradedCourses(auth.getUser()));
     	request.getRequestDispatcher("WEB-INF/views/professor/index.jsp").forward(request, response);
     }
 

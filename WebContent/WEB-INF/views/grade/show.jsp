@@ -2,15 +2,12 @@
     pageEncoding="ISO-8859-1"%>
 <%@ taglib uri = "http://java.sun.com/jsp/jstl/core" prefix = "c" %>
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!DOCTYPE html>
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Single Course</title>
-<!-- Bootstrap core CSS-->
-  	<link href="<c:url value="/assets/css/bootstrap.min.css"/>" rel="stylesheet">
-  	<!-- Custom styles for this template-->
-  	<link href="<c:url value="/assets/css/sb-admin.min.css"/>" rel="stylesheet">
+	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+	<title>Single Course</title>
+	<c:import url="/WEB-INF/views/styles.jsp"></c:import>
 </head>
 <body class="fixed-nav sticky-footer bg-dark" id="page-top" cz-shortcut-listen="true">
 	
@@ -74,19 +71,9 @@
 	        </div>
 	      </div>
 	  </div>
-	  <footer class="sticky-footer">
-	    <div class="container">
-	      <div class="text-center">
-	        <small>P16036 - P16097 - P16112</small>
-	      </div>
-	    </div>
-	  </footer>
+	  <c:import url="/WEB-INF/views/footer.jsp"></c:import>
 	</div>
 	
-	<!-- Bootstrap core JavaScript-->
-  	<script src="<c:url value="/assets/js/jquery.min.js"/>"></script>
-  	<script src="<c:url value="/assets/js/bootstrap.bundle.min.js"/>"></script>
-  	<!-- Core plugin JavaScript-->
-  	<script src="<c:url value="/assets/js/jquery.easing.min.js"/>"></script>
+	<c:import url="/WEB-INF/views/scripts.jsp"></c:import>
 </body>
 </html>

@@ -1,14 +1,55 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<%@ taglib uri = "http://java.sun.com/jsp/jstl/core" prefix = "c" %>
+
+<!DOCTYPE html>
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Insert title here</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+	<title>Professor Dashboard</title>
+	<c:import url="/WEB-INF/views/styles.jsp"></c:import>	
 </head>
-<body>
-	<h2>This feature will be available in the 3rd part of the exercise!</h2>
-	<a href="logout" class="nav-link">
-	            <i class="fa fa-fw fa-sign-out"></i>Logout</a>
+<body class="fixed-nav sticky-footer bg-dark" id="page-top" cz-shortcut-listen="true">
+	<c:import url="/WEB-INF/views/nav.jsp"></c:import>
+	
+	<div class="content-wrapper">
+		<div class="container-fluid">
+
+			<c:forEach items="${ gradedCourses }" var="gradedCourse">
+				<div class="card mb-3">
+					<div class="card-header">
+						<c:out value="${ gradedCourse.title }" />
+					</div>
+					<div class="card-body">
+						<div class="table-responsive">
+							<table class="table table-bordered" id="dataTable">
+	
+								<thead>
+									<tr>
+										<th>Student Name</th>
+										<th>Grade</th>
+									</tr>
+								</thead>
+								<tbody>
+									<c:forEach items="${ gradedCourse.gradedStudents }" var="gradedStudent">
+										<tr>
+											<th><c:out value="${ gradedStudent.fullName }" /></th>
+											<th><c:out value="${ gradedStudent.grade }" /></th>
+										</tr>
+									</c:forEach>
+								</tbody>
+							</table>
+						</div>
+					
+					</div>
+				</div>
+			</c:forEach>
+
+		</div>
+		
+		<c:import url="/WEB-INF/views/footer.jsp"></c:import>	
+	</div>
+	
+	<c:import url="/WEB-INF/views/scripts.jsp"></c:import>	
 </body>
 </html>
