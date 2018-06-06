@@ -8,5 +8,8 @@
 <!-- Font Awesome -->
 <link href="<c:url value="/assets/css/fontawesome-all.min.css"/>" rel="stylesheet">
 
-<!-- Custom styles for this template-->
+<!-- Sb styles for this template-->
 <link href="<c:url value="/assets/css/sb-admin.min.css"/>" rel="stylesheet">
+
+<!-- Custom styles -->
+<link href="<c:url value="/assets/css/custom.css"/>" rel="stylesheet">

@@ -12,7 +12,7 @@
 				<p><b>No courses available. Please contact the secretary of your department!</b></p>
 			</c:if>
 			<c:if test="${!empty grades}">        
-			<table class="table table-bordered table-striped" id="dataTable" width="100%" cellspacing="0">	
+			<table class="table table-bordered table-striped" id="dataTable-list" width="100%" cellspacing="0">	
 				<thead>
 					<tr>
 						<th>Id</th>
