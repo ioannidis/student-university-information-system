@@ -66,6 +66,80 @@ public class GradeService {
     	return null;
     }
     
+    public String getAverage(String stdId) {
+    	Connection con = null;
+    	ResultSet rs = null;
+    	PreparedStatement stmt = null;
+    	
+    	String avg = null;
+
+    	String str = "SELECT AVG(javapart2.grades.grade) AS average FROM javapart2.grades WHERE student_id=? AND javapart2.grades.grade >= 5";
+
+    	try {
+    	    con = ds.getConnection();
+
+    	    stmt = con.prepareStatement(str);
+    	    stmt.setString(1, stdId);
+
+    	    rs = stmt.executeQuery();
+    	    
+    	    if (rs.next()) {
+    	    	avg = (String) rs.getString("average");
+    	    }
+
+    	} catch (SQLException e) {
+    	    e.printStackTrace();
+    	} finally {
+    	    try {
+	    		rs.close();
+	    		stmt.close();
+	    		con.close();
+    	    } catch (SQLException e) {
+    	    	e.printStackTrace();
+    	    }
+    	}
+    	
+    	return avg;
+    }
+    
+    public List<Grade> getGradesByAverage(String stdId, String departmentId) {
+    	Connection con = null;
+    	ResultSet rs = null;
+    	PreparedStatement stmt = null;
+    	
+    	List<Grade> grades = new ArrayList<>();
+
+    	String str = "SELECT * FROM javapart2.grades RIGHT JOIN javapart2.courses ON javapart2.grades.course_id = javapart2.courses.id WHERE (student_id=? OR student_id IS NULL) AND javapart2.courses.department_id=? AND javapart2.grades.grade IS NOT NULL ORDER BY javapart2.courses.title ASC;";
+
+    	try {
+    	    con = ds.getConnection();
+
+    	    stmt = con.prepareStatement(str);
+    	    stmt.setString(1, stdId);
+    	    stmt.setString(2, departmentId);
+
+    	    rs = stmt.executeQuery();
+    	    
+    	    while (rs.next()) {
+    	    	    grades.add(new Grade(rs.getString("id"), rs.getString("title"), rs.getInt("ects"),
+    	    	    		rs.getInt("teaching_hours"), rs.getString("instructor_username"), rs.getInt("grade"), rs.getInt("semester"), rs.getString("department_id")));
+    	    }
+
+    	} catch (SQLException e) {
+    	    e.printStackTrace();
+    	} finally {
+    	    try {
+	    		rs.close();
+	    		stmt.close();
+	    		con.close();
+    	    } catch (SQLException e) {
+    	    	e.printStackTrace();
+    	    }
+    	}
+    	
+    	return grades;
+    }
+    
     public List<Grade> getGradesByList(String stdId, String departmentId) {
     	Connection con = null;
     	ResultSet rs = null;

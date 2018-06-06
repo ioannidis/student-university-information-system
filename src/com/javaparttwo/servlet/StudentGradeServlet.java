@@ -41,7 +41,6 @@ public class StudentGradeServlet extends HttpServlet {
      */
     public StudentGradeServlet() {
         super();
-        // TODO Auto-generated constructor stub
     }
 
 	/**
@@ -104,7 +103,13 @@ public class StudentGradeServlet extends HttpServlet {
 	    	    break;
 	    	}
 	    	case "average": {
+	    		String avg = gradeService.getAverage(user.getUsername());
+	    		List<Grade> grades = gradeService.getGradesByAverage(user.getUsername(), user.getDepartmentId());
+
 	    		request.setAttribute("sortBy", "average");
+	    		request.setAttribute("average", avg);
+	    		request.setAttribute("grades", grades);
+	    		request.getRequestDispatcher("WEB-INF/views/grade/index.jsp").forward(request, response);
 	    	    break;
 	    	}
 	    	case "semester":
