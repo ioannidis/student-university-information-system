@@ -9,11 +9,7 @@
 		<i class="fa fa-table"></i><b>Semester ${loop.index + 1}</b>
 	</div>
     <div class="card-body">
-      	<div class="table-responsive">
-      		<c:if test="${empty courses}">
-				<p><b>No courses available. Please contact the secretary of your department!</b></p>
-			</c:if>
-			<c:if test="${!empty courses}">        
+      	<div class="table-responsive">        
 			<table class="table table-bordered table-striped table-semester" width="100%" cellspacing="0">	
 				<thead>
 					<tr>
@@ -47,7 +43,6 @@
 				    </c:forEach>
 				</tbody>
 			</table>
-			</c:if>
 		</div>
 	</div>
 </div>
