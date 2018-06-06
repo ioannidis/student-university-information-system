@@ -46,6 +46,7 @@
 	        <tr>
 	        	<td><b>Actions</b></td>
 				<td>
+					<a class="btn btn-primary" href="secretary" class="btn">Back</a>
 					<a class="btn btn-warning" href="courses?id=${course.courseId}&action=edit" class="btn">Edit</a>
 					<a class="btn btn-danger" href="courses?id=${course.courseId}&action=delete" class="btn">Delete</a>
 				</td>

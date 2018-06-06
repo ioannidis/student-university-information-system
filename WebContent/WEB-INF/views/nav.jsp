@@ -21,7 +21,7 @@
 	          </a>
 	        </li>
 	        
-	        <!-- Role specific menu  -->
+	        <!-- Secretary specific menu  -->
 	        <c:if test="${user.roleId=='secretary'}">
 	        <li class="nav-item" data-toggle="tooltip" data-placement="right" title="" data-original-title="Secretary Actions">
 	        	<a class="nav-link" href="#" style="color:#fff !important; padding-bottom: 0px;">
@@ -39,11 +39,11 @@
 	        </c:if>
 	        <!-- End role specific menu  -->
 	        
-	        <!-- Role specific menu  -->
+	        <!-- Student specific menu  -->
 	        <c:if test="${user.roleId=='student'}">
 	        <li class="nav-item" data-toggle="tooltip" data-placement="right" title="" data-original-title="Secretary Actions">
 	        	<a class="nav-link" href="#" style="color:#fff !important; padding-bottom: 0px;">
-	        		<b>Secretary Actions</b>
+	        		<b>Student Actions</b>
 	        	</a>
 	        	<ul class="sidenav-second-level">
 	        		<li class="nav-item" data-toggle="tooltip" data-placement="right" title="" data-original-title="Manage Courses">

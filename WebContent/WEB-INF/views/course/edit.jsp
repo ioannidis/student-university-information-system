@@ -47,7 +47,7 @@
 			</select>
 		</div>
 		<br />
-		<input type="submit" class="btn btn-primary" value="Update Course" />
+		<input type="submit" class="btn btn-success" value="Update Course" />
 		<a href="<c:url value="/secretary"/>" class="btn btn-warning">Cancel</a>
 	</form>
 	 </div>

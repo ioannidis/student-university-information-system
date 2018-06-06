@@ -18,7 +18,7 @@
 	  <div class="container-fluid">
 	   <div class="card mb-3">
 	       <div class="card-header">
-	         <i class="fa fa-table"></i><b>Course</b></div>
+	         <i class="fa fa-user-circle"></i><b>Student information</b></div>
 	       <div class="card-body">
 	         <div class="table-responsive">
 	<table class="table table-bordered table-striped" id="dataTable" width="100%" cellspacing="0">
