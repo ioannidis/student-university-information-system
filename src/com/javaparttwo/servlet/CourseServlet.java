@@ -85,7 +85,7 @@ public class CourseServlet extends HttpServlet {
 	    break;
 	}
 	default: {
-	    List<Course> courses = courseService.getCourses();
+	    List<Course> courses = courseService.getCourses(authService.getUser().getDepartmentId());
 	    request.setAttribute("courses", courses);
 	    request.getRequestDispatcher("WEB-INF/views/course/index.jsp").forward(request, response);
 	    break;
