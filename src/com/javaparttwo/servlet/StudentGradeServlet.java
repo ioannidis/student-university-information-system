@@ -96,8 +96,12 @@ public class StudentGradeServlet extends HttpServlet {
     	// show all grades
     	switch (sortBy) {
 	    	case "list": {
-	    		request.setAttribute("sortBy", "courses");
-	    		break;
+	    		List<Grade> grades = gradeService.getGradesByList(user.getUsername(), user.getDepartmentId());
+	    			    		
+	    		request.setAttribute("grades", grades);
+	    		request.setAttribute("sortBy", "list");
+	    		request.getRequestDispatcher("WEB-INF/views/grade/index.jsp").forward(request, response);
+	    	    break;
 	    	}
 	    	case "average": {
 	    		request.setAttribute("sortBy", "average");
