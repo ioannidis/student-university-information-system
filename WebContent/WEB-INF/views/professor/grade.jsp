@@ -15,6 +15,15 @@
 	<div class="content-wrapper">
 		<div class="container-fluid">
 		
+			<ol class="breadcrumb">
+				<li class="breadcrumb-item">
+					<a href="#">Professor</a>
+				</li>
+				<li class="breadcrumb-item active">
+					Grade Students
+				</li>
+			</ol>
+			
 			<c:forEach items="${ pendingCourses }" var="pendingCourses">
 				<div class="card mb-3">
 					<div class="card-header">
@@ -39,7 +48,12 @@
 											<th><c:out value="${ pendingStudents.name }" /></th>
 											<th><c:out value="${ pendingStudents.surname }" /></th>
 											<th><c:out value="${ pendingStudents.email }" /></th>
-											<th>0</th>
+											<th>
+												<a class="btn btn-success" href="#" class="btn">
+													<i class="fas fa-plus-circle"></i>
+													Assign
+												</a>
+											</th>
 										</tr>
 									</c:forEach>
 								</tbody>

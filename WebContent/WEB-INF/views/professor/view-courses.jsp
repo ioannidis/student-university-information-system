@@ -15,6 +15,15 @@
 	<div class="content-wrapper">
 		<div class="container-fluid">
 		
+			<ol class="breadcrumb">
+				<li class="breadcrumb-item">
+					<a href="#">Professor</a>
+				</li>
+				<li class="breadcrumb-item active">
+					View Courses
+				</li>
+			</ol>
+		
 			<c:forEach items="${ gradedCourses }" var="gradedCourse">
 				<div class="card mb-3">
 					<div class="card-header">
