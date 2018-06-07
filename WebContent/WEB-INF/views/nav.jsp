@@ -39,9 +39,34 @@
 	        </c:if>
 	        <!-- End role specific menu  -->
 	        
+	        <!-- Professor specific menu -->
+	        <c:if test="${ user.roleId=='instructor' }">
+	        
+	        <li class="nav-item" data-toggle="tooltip" data-placement="right" title="" data-original-title="Professor Actions">
+	        	<a class="nav-link" href="#" style="color:#fff !important; padding-bottom: 0px;">
+	        		<b>Professor Actions</b>
+	        	</a>
+	        	<ul class="sidenav-second-level">
+	        		<li class="nav-item" data-toggle="tooltip" data-placement="right" title="" data-original-title="View Assigned Courses">
+			          <a class="nav-link" href="<c:url value="instructor"/>">
+			            <i class="fa fa-fw fa-dashboard"></i>
+			            <span class="nav-link-text">View Courses</span>
+			          </a>
+			        </li>
+	        		<li class="nav-item" data-toggle="tooltip" data-placement="right" title="" data-original-title="Grade Students">
+			          <a class="nav-link" href="<c:url value="instructor"/>">
+			            <i class="fa fa-fw fa-dashboard"></i>
+			            <span class="nav-link-text">Grade Students</span>
+			          </a>
+			        </li>
+        		</ul>
+	        </li>
+	        
+	        </c:if>
+	        
 	        <!-- Student specific menu  -->
 	        <c:if test="${user.roleId=='student'}">
-	        <li class="nav-item" data-toggle="tooltip" data-placement="right" title="" data-original-title="Secretary Actions">
+	        <li class="nav-item" data-toggle="tooltip" data-placement="right" title="" data-original-title="Student Actions">
 	        	<a class="nav-link" href="#" style="color:#fff !important; padding-bottom: 0px;">
 	        		<b>Student Actions</b>
 	        	</a>
