@@ -71,6 +71,55 @@ public class ProfessorService {
 	return professors;
     }
     
+    /**
+     * Returns the list of registered professors.
+     * 
+     * @return The list of professors.
+     */
+    public List<User> getProfessorsByDept(String departmentId) {
+		List<User> professors = new ArrayList<>();
+	
+		Connection con = null;
+		ResultSet rs = null;
+		PreparedStatement stmt = null;
+	
+		String query = "SELECT * FROM javapart2.users WHERE role_id='instructor' AND department_id=?";
+			
+		try {
+			con = ds.getConnection();
+			
+			stmt = con.prepareStatement(query);
+			stmt.setString(1, departmentId);
+			
+			rs = stmt.executeQuery();
+			
+		    while (rs.next()) {
+			professors.add(
+				new User(rs.getString("username"),
+					null,
+					rs.getString("first_name"),
+					rs.getString("last_name"),
+					rs.getLong("phone_number"),
+					rs.getString("email"),
+					rs.getString("role_id"),
+					rs.getString("department_id")));
+		    }
+		    
+		} catch (SQLException e) {
+		    e.printStackTrace();
+		} finally {
+		    try {
+				rs.close();
+				stmt.close();
+				con.close();
+		    } catch (SQLException e) {
+		    	e.printStackTrace();
+		    }
+		}
+		
+		return professors;
+    }
+    
     public List<GradedCourse> getGradedCourses(String professorUsername) {
 	List<GradedCourse> gradedCourses = new ArrayList<>();
 	
