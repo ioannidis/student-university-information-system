@@ -17,70 +17,21 @@
 	        <li class="nav-item" data-toggle="tooltip" data-placement="right" title="" data-original-title="General course list">
 	          <a class="nav-link" href="<c:url value="/courses"/>">
 	            <i class="fa fa-fw fa-dashboard"></i>
-	            <span class="nav-link-text">General course list</span>
+	            <span class="nav-link-text">General Course List</span>
 	          </a>
 	        </li>
 	        
-	        <!-- Secretary specific menu  -->
-	        <c:if test="${user.roleId=='secretary'}">
-	        <li class="nav-item" data-toggle="tooltip" data-placement="right" title="" data-original-title="Secretary Actions">
-	        	<a class="nav-link" href="#" style="color:#fff !important; padding-bottom: 0px;">
-	        		<b>Secretary Actions</b>
-	        	</a>
-	        	<ul class="sidenav-second-level">
-	        		<li class="nav-item" data-toggle="tooltip" data-placement="right" title="" data-original-title="Manage Courses">
-			          <a class="nav-link" href="<c:url value="/secretary"/>">
-			            <i class="fa fa-fw fa-dashboard"></i>
-			            <span class="nav-link-text">Manage Courses</span>
-			          </a>
-			        </li>
-        		</ul>
-	        </li>
+			<c:if test="${ user.roleId=='secretary' }">
+	        	<c:import url="/WEB-INF/views/nav-secretary.jsp"></c:import>
 	        </c:if>
-	        <!-- End role specific menu  -->
 	        
-	        <!-- Professor specific menu -->
 	        <c:if test="${ user.roleId=='instructor' }">
-	        
-	        <li class="nav-item" data-toggle="tooltip" data-placement="right" title="" data-original-title="Professor Actions">
-	        	<a class="nav-link" href="#" style="color:#fff !important; padding-bottom: 0px;">
-	        		<b>Professor Actions</b>
-	        	</a>
-	        	<ul class="sidenav-second-level">
-	        		<li class="nav-item" data-toggle="tooltip" data-placement="right" title="" data-original-title="View Assigned Courses">
-			          <a class="nav-link" href="<c:url value="instructor"/>">
-			            <i class="fa fa-fw fa-dashboard"></i>
-			            <span class="nav-link-text">View Courses</span>
-			          </a>
-			        </li>
-	        		<li class="nav-item" data-toggle="tooltip" data-placement="right" title="" data-original-title="Grade Students">
-			          <a class="nav-link" href="<c:url value="instructor"/>">
-			            <i class="fa fa-fw fa-dashboard"></i>
-			            <span class="nav-link-text">Grade Students</span>
-			          </a>
-			        </li>
-        		</ul>
-	        </li>
-	        
+	        	<c:import url="/WEB-INF/views/nav-professor.jsp"></c:import>
 	        </c:if>
 	        
-	        <!-- Student specific menu  -->
-	        <c:if test="${user.roleId=='student'}">
-	        <li class="nav-item" data-toggle="tooltip" data-placement="right" title="" data-original-title="Student Actions">
-	        	<a class="nav-link" href="#" style="color:#fff !important; padding-bottom: 0px;">
-	        		<b>Student Actions</b>
-	        	</a>
-	        	<ul class="sidenav-second-level">
-	        		<li class="nav-item" data-toggle="tooltip" data-placement="right" title="" data-original-title="Manage Courses">
-			          <a class="nav-link" href="<c:url value="/studentgrades"/>">
-			            <i class="fa fa-fw fa-dashboard"></i>
-			            <span class="nav-link-text">Grades</span>
-			          </a>
-			        </li>
-        		</ul>
-	        </li>
+	        <c:if test="${ user.roleId=='student' }">
+				<c:import url="/WEB-INF/views/nav-student.jsp"></c:import>
 	        </c:if>
-	        <!-- End role specific menu  -->
 	    	
 	      </ul>
 	      <ul class="navbar-nav ml-auto">
