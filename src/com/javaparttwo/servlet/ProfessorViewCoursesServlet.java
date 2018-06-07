@@ -50,7 +50,8 @@ public class ProfessorViewCoursesServlet extends HttpServlet {
     	
     	ProfessorService service = new ProfessorService(ds);
     	
-    	request.setAttribute("gradedCourses", service.getGradedCourses(auth.getUser()));
+    	request.setAttribute(
+    		"gradedCourses", service.getGradedCourses(auth.getUser().getUsername()));
     	request.getRequestDispatcher("WEB-INF/views/professor/view-courses.jsp").forward(request, response);
     }
 

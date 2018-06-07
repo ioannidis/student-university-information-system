@@ -12,6 +12,7 @@ import javax.sql.DataSource;
 import com.javaparttwo.model.Course;
 import com.javaparttwo.model.GradedCourse;
 import com.javaparttwo.model.GradedStudent;
+import com.javaparttwo.model.PendingCourse;
 import com.javaparttwo.model.User;
 
 /**
@@ -70,17 +71,18 @@ public class ProfessorService {
 	return professors;
     }
     
-    public List<GradedCourse> getGradedCourses(User professor) {
+    public List<GradedCourse> getGradedCourses(String professorUsername) {
 	List<GradedCourse> gradedCourses = new ArrayList<>();
 	
 	String query = "select * " + 
 		"from courses " + 
-		"where instructor_username = ?";
+		"where instructor_username = ? " +
+		"and id in (select course_id from grades)";
 	
 	try (	Connection con 		= ds.getConnection();
 		PreparedStatement stmt 	= con.prepareStatement(query)) {
 	    
-	    stmt.setString(1, professor.getUsername());
+	    stmt.setString(1, professorUsername);
 
 	    try (ResultSet rs = stmt.executeQuery()) {
 		while (rs.next()) {
@@ -140,5 +142,74 @@ public class ProfessorService {
 	}
 	
 	return gradedStudents;
+    }
+    
+    public List<PendingCourse> getPendingCourses(String professorUsername) {
+	List<PendingCourse> pendingCourses = new ArrayList<>();
+	
+	String query = "select * " + 
+		"from courses " + 
+		"where instructor_username = ?";
+	
+	try (	Connection con 		= ds.getConnection();
+		PreparedStatement stmt 	= con.prepareStatement(query)) {
+	    
+	    stmt.setString(1, professorUsername);
+
+	    try (ResultSet rs = stmt.executeQuery()) {
+		while (rs.next()) {
+		    pendingCourses.add(new PendingCourse(
+			rs.getString("id"),
+			rs.getString("title"),
+			rs.getInt("ects"),
+			rs.getInt("teaching_hours"),
+			rs.getString("instructor_username"),
+			rs.getInt("semester"),
+			rs.getString("department_id"),
+			getPendingStudents(rs.getString("id"))));
+		    }
+	    }
+	    
+	} catch (SQLException e) {
+	    e.printStackTrace();
+	}
+	
+	return pendingCourses;
+    }
+    
+    public List<User> getPendingStudents(String courseId) {
+	List<User> pendingStudents = new ArrayList<>();
+	
+	String query = "select * " + 
+		"from users\r\n" + 
+		"where username not in (select student_id from grades where course_id = ?) " + 
+		"and role_id='student' " + 
+		"and department_id = (select department_id from courses where id = ?)";
+	
+	try (	Connection con 		= ds.getConnection();
+		PreparedStatement stmt 	= con.prepareStatement(query)) {
+	    
+	    stmt.setString(1, courseId);
+	    stmt.setString(2, courseId);
+	    
+	    try (ResultSet rs = stmt.executeQuery()) {
+		while (rs.next()) {
+		    pendingStudents.add(
+			    new User(
+				rs.getString("username"),
+				null,
+				rs.getString("first_name"),
+				rs.getString("last_name"),
+				rs.getLong("phone_number"),
+				rs.getString("email"),
+				rs.getString("role_id"),
+				rs.getString("department_id")));
+		    }
+	    }
+	} catch (SQLException e) {
+	    e.printStackTrace();
+	}
+	
+	return pendingStudents;
     }
 }

@@ -16,7 +16,7 @@
 			</a>
 		</li>
 		<li class="nav-item" data-toggle="tooltip" data-placement="right" title="" data-original-title="Grade Students">
-			<a class="nav-link" href="<c:url value="/instructor/grade"/>">
+			<a class="nav-link" href="<c:url value="/gradestudents"/>">
 				<span class="nav-link-text">
 					<i class="fas fa-edit"></i>
 					Grade Students
