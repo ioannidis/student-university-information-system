@@ -41,7 +41,7 @@ public class ProfessorGradeStudentsServlet extends HttpServlet {
 	ProfessorService service = new ProfessorService(ds);
 
 	request.setAttribute("pendingCourses", service.getPendingCourses(auth.getUser().getUsername()));
-	request.getRequestDispatcher("WEB-INF/views/professor/grade.jsp").forward(request, response);
+	request.getRequestDispatcher("WEB-INF/views/professor/grade-students.jsp").forward(request, response);
 
     }
 
