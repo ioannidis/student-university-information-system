@@ -82,7 +82,7 @@ public class CourseServlet extends HttpServlet {
 			    Course course = courseService.getCourse(id);
 		
 			    request.setAttribute("course", course);
-			    request.setAttribute("instructors", professorService.getProfessors());
+			    request.setAttribute("instructors", professorService.getProfessorsByDept(authService.getUser().getDepartmentId()));
 			    request.getRequestDispatcher("WEB-INF/views/course/edit.jsp").forward(request, response);
 			    break;
 			}
