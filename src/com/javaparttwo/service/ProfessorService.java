@@ -74,7 +74,7 @@ public class ProfessorService {
 	List<GradedCourse> gradedCourses = new ArrayList<>();
 	
 	String query = "select * " + 
-		"from javapart2.courses " + 
+		"from courses " + 
 		"where instructor_username = ?";
 	
 	try (	Connection con 		= ds.getConnection();
@@ -92,7 +92,7 @@ public class ProfessorService {
 			rs.getString("instructor_username"),
 			rs.getInt("semester"),
 			rs.getString("department_id"),
-			getGradedStudents(professor, rs.getString("id"))));
+			getGradedStudents(rs.getString("id"))));
 		    }
 	    }
 	    
@@ -103,30 +103,34 @@ public class ProfessorService {
 	return gradedCourses;
     }
     
-    public List<GradedStudent> getGradedStudents(User professor, String courseId) {
+    public List<GradedStudent> getGradedStudents(String courseId) {
 	List<GradedStudent> gradedStudents = new ArrayList<>();
 	
-	String query = "select first_name, last_name, grade " + 
-		"from javapart2.users " + 
-		"inner join javapart2.grades " + 
-		"on javapart2.users.username = javapart2.grades.student_id " +
-		"inner join javapart2.courses " + 
-		"on javapart2.grades.course_id = javapart2.courses.id " +
-		"where javapart2.grades.course_id = ?" +
-		"and javapart2.courses.instructor_username = ?";
+	String query = "select username, first_name, last_name, phone_number, email, role_id, users.department_id, grade " + 
+		"from users " + 
+		"inner join grades " + 
+		"on users.username = grades.student_id " + 
+		"inner join courses " + 
+		"on grades.course_id = courses.id " + 
+		"where grades.course_id = ?";
 	
 	try (	Connection con 		= ds.getConnection();
 		PreparedStatement stmt 	= con.prepareStatement(query)) {
 	    
 	    stmt.setString(1, courseId);
-	    stmt.setString(2, professor.getUsername());
 	    
 	    try (ResultSet rs = stmt.executeQuery()) {
 		while (rs.next()) {
 		    gradedStudents.add(
 			    new GradedStudent(
+				rs.getString("username"),
+				null,
 				rs.getString("first_name"),
-        			rs.getString("last_name"),
+				rs.getString("last_name"),
+				rs.getLong("phone_number"),
+				rs.getString("email"),
+				rs.getString("role_id"),
+				rs.getString("department_id"),
         			rs.getInt("grade")));
 		    }
 	    }

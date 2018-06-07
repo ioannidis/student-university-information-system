@@ -14,7 +14,7 @@
 	
 	<div class="content-wrapper">
 		<div class="container-fluid">
-
+		
 			<c:forEach items="${ gradedCourses }" var="gradedCourse">
 				<div class="card mb-3">
 					<div class="card-header">
@@ -27,14 +27,18 @@
 	
 								<thead>
 									<tr>
-										<th>Student Name</th>
+										<th>First Name</th>
+										<th>Last Name</th>
+										<th>Email</th>
 										<th>Grade</th>
 									</tr>
 								</thead>
 								<tbody>
 									<c:forEach items="${ gradedCourse.gradedStudents }" var="gradedStudent">
 										<tr>
-											<th><c:out value="${ gradedStudent.fullName }" /></th>
+											<th><c:out value="${ gradedStudent.name }" /></th>
+											<th><c:out value="${ gradedStudent.surname }" /></th>
+											<th><c:out value="${ gradedStudent.email }" /></th>
 											<th><c:out value="${ gradedStudent.grade }" /></th>
 										</tr>
 									</c:forEach>
