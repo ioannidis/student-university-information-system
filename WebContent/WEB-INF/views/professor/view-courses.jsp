@@ -16,8 +16,8 @@
 		<div class="container-fluid">
 		
 			<ol class="breadcrumb">
-				<li class="breadcrumb-item">
-					<a href="#">Professor</a>
+				<li class="breadcrumb-item text-primary">
+					Professor
 				</li>
 				<li class="breadcrumb-item active">
 					View Courses
@@ -32,7 +32,7 @@
 					</div>
 					<div class="card-body">
 						<div class="table-responsive">
-							<table class="table table-bordered prof-courses">
+							<table class="table table-bordered prof-courses" width="100%" cellspacing="0">
 	
 								<thead>
 									<tr>

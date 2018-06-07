@@ -16,23 +16,23 @@
 		<div class="container-fluid">
 		
 			<ol class="breadcrumb">
-				<li class="breadcrumb-item">
-					<a href="#">Professor</a>
+				<li class="breadcrumb-item text-primary">
+					Professor
 				</li>
 				<li class="breadcrumb-item active">
 					Grade Students
 				</li>
 			</ol>
 			
-			<c:forEach items="${ pendingCourses }" var="pendingCourses">
+			<c:forEach items="${ pendingCourses }" var="pendingCourse">
 				<div class="card mb-3">
 					<div class="card-header">
 						<i class="fas fa-book"></i><!--
-						 --><c:out value="${ pendingCourses.title }" />
+						 --><c:out value="${ pendingCourse.title }" />
 					</div>
 					<div class="card-body">
 						<div class="table-responsive">
-							<table class="table table-bordered prof-courses">
+							<table class="table table-bordered prof-courses" width="100%" cellspacing="0">
 	
 								<thead>
 									<tr>
@@ -43,13 +43,13 @@
 									</tr>
 								</thead>
 								<tbody>
-									<c:forEach items="${ pendingCourses.pendingStudents }" var="pendingStudents">
+									<c:forEach items="${ pendingCourse.pendingStudents }" var="pendingStudent">
 										<tr>
-											<th><c:out value="${ pendingStudents.name }" /></th>
-											<th><c:out value="${ pendingStudents.surname }" /></th>
-											<th><c:out value="${ pendingStudents.email }" /></th>
+											<th><c:out value="${ pendingStudent.name }" /></th>
+											<th><c:out value="${ pendingStudent.surname }" /></th>
+											<th><c:out value="${ pendingStudent.email }" /></th>
 											<th>
-												<a class="btn btn-success" href="#" class="btn">
+												<a class="btn btn-success" href="assigngrade?username=<c:out value="${ pendingStudent.username }" />&course_id=<c:out value="${ pendingCourse.courseId }" />" class="btn">
 													<i class="fas fa-plus-circle"></i>
 													Assign
 												</a>

@@ -244,6 +244,10 @@ public class User {
     public void setDepartmentId(String departmentId) {
 	this.departmentId = departmentId;
     }
+    
+    public String getFullName() {
+	return name + " " + surname;
+    }
 
     /**
      * Overrides toString() method.

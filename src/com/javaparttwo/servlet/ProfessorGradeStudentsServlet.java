@@ -20,10 +20,6 @@ public class ProfessorGradeStudentsServlet extends HttpServlet {
     @Resource(name = "jdbc/javapart2")
     private DataSource ds;
 
-    public ProfessorGradeStudentsServlet() {
-	super();
-    }
-
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
 	    throws ServletException, IOException {
 	AuthService auth = new AuthService(request.getSession());
