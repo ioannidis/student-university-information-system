@@ -16,8 +16,8 @@ import com.javaparttwo.service.ProfessorService;
 /**
  * Handles instructor requests and responses.
  */
-@WebServlet({ "/ProfessorServlet", "/instructor", "/professor" })
-public class ProfessorServlet extends HttpServlet {
+@WebServlet({ "/ProfessorViewCoursesServlet", "/instructor", "/professor" })
+public class ProfessorViewCoursesServlet extends HttpServlet {
     
     /**
      * Java related serial version UID.
@@ -51,7 +51,7 @@ public class ProfessorServlet extends HttpServlet {
     	ProfessorService service = new ProfessorService(ds);
     	
     	request.setAttribute("gradedCourses", service.getGradedCourses(auth.getUser()));
-    	request.getRequestDispatcher("WEB-INF/views/professor/index.jsp").forward(request, response);
+    	request.getRequestDispatcher("WEB-INF/views/professor/view-courses.jsp").forward(request, response);
     }
 
     /**
