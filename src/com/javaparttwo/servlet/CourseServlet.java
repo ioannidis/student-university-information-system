@@ -38,59 +38,61 @@ public class CourseServlet extends HttpServlet {
      */
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
 	    throws ServletException, IOException {
-	AuthService authService = new AuthService(request.getSession());
-	if (!authService.isLoggedIn()) {
-	    response.sendRedirect("login");
-	    return;
-	}
-
-	CourseService courseService = new CourseService(ds);
-	String id = getParameterOrDefault(request, "id", "");
-	String action = getParameterOrDefault(request, "action", "all");
-
-	switch (action) {
-	case "show": {
-	    if (!authService.hasRole("secretary")) {
-		response.sendError(HttpServletResponse.SC_FORBIDDEN);
-		return;
-	    }
-
-	    Course course = courseService.getCourse(id);
-	    request.setAttribute("course", course);
-	    request.getRequestDispatcher("WEB-INF/views/course/show.jsp").forward(request, response);
-	    break;
-	}
-	case "edit": {
-	    if (!authService.hasRole("secretary")) {
-		response.sendError(HttpServletResponse.SC_FORBIDDEN);
-		return;
-	    }
-
-	    ProfessorService professorService = new ProfessorService(ds);
-	    Course course = courseService.getCourse(id);
-
-	    request.setAttribute("course", course);
-	    request.setAttribute("instructors", professorService.getProfessors());
-	    request.getRequestDispatcher("WEB-INF/views/course/edit.jsp").forward(request, response);
-	    break;
-	}
-	case "delete": {
-	    if (!authService.hasRole("secretary")) {
-		response.sendError(HttpServletResponse.SC_FORBIDDEN);
-		return;
-	    }
-
-	    courseService.deleteCourse(id);
-	    response.sendRedirect("secretary");
-	    break;
-	}
-	default: {
-	    List<Course> courses = courseService.getCourses(authService.getUser().getDepartmentId());
-	    request.setAttribute("courses", courses);
-	    request.getRequestDispatcher("WEB-INF/views/course/index.jsp").forward(request, response);
-	    break;
-	}
-	}
+		AuthService authService = new AuthService(request.getSession());
+		if (!authService.isLoggedIn()) {
+		    response.sendRedirect("login");
+		    return;
+		}
+	
+		CourseService courseService = new CourseService(ds);
+		String id = getParameterOrDefault(request, "id", "");
+		String action = getParameterOrDefault(request, "action", "all");
+	
+		switch (action) {
+			case "create": {
+				if (!authService.hasRole("secretary")) {
+					response.sendError(HttpServletResponse.SC_FORBIDDEN);
+					return;
+			    }
+				
+				ProfessorService professorService = new ProfessorService(ds);
+				
+				request.setAttribute("instructors", professorService.getProfessors());
+				request.getRequestDispatcher("WEB-INF/views/course/create.jsp").forward(request, response);
+			    break;
+			}
+			case "show": {
+			    if (!authService.hasRole("secretary")) {
+					response.sendError(HttpServletResponse.SC_FORBIDDEN);
+					return;
+			    }
+		
+			    Course course = courseService.getCourse(id);
+			    request.setAttribute("course", course);
+			    request.getRequestDispatcher("WEB-INF/views/course/show.jsp").forward(request, response);
+			    break;
+			}
+			case "edit": {
+			    if (!authService.hasRole("secretary")) {
+					response.sendError(HttpServletResponse.SC_FORBIDDEN);
+					return;
+			    }
+		
+			    ProfessorService professorService = new ProfessorService(ds);
+			    Course course = courseService.getCourse(id);
+		
+			    request.setAttribute("course", course);
+			    request.setAttribute("instructors", professorService.getProfessors());
+			    request.getRequestDispatcher("WEB-INF/views/course/edit.jsp").forward(request, response);
+			    break;
+			}
+			default: {
+			    List<Course> courses = courseService.getCourses(authService.getUser().getDepartmentId());
+			    request.setAttribute("courses", courses);
+			    request.getRequestDispatcher("WEB-INF/views/course/index.jsp").forward(request, response);
+			    break;
+			}
+		}
     }
 
     /**
@@ -113,24 +115,58 @@ public class CourseServlet extends HttpServlet {
      */
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
 	    throws ServletException, IOException {
-	CourseService courseService = new CourseService(ds);
-	String id = getParameterOrDefault(request, "id", "");
-	String action = getParameterOrDefault(request, "action", "");
+    	AuthService authService = new AuthService(request.getSession());
+		if (!authService.isLoggedIn()) {
+		    response.sendRedirect("login");
+		    return;
+		}
+		
+		CourseService courseService = new CourseService(ds);
+		String id = getParameterOrDefault(request, "id", "");
+		String action = getParameterOrDefault(request, "action", "");
 
-	switch (action) {
-	case "edit": {
-	    Course course = courseService.getCourse(id);
-	    courseService.editCourse(id, getParameterOrDefault(request, "title", course.getTitle()),
-		    getParameterOrDefault(request, "ects", Integer.toString(course.getEcts())),
-		    getParameterOrDefault(request, "teachingHours", Integer.toString(course.getTeachingHours())),
-		    getParameterOrDefault(request, "teachingInstructor", course.getInstructorUsername()));
-	    response.sendRedirect("secretary");
-	    break;
-	}
-	default: {
-	    doGet(request, response);
-	    break;
-	}
-	}
+		switch (action) {
+			case "delete": {
+			    if (!authService.hasRole("secretary")) {
+					response.sendError(HttpServletResponse.SC_FORBIDDEN);
+					return;
+			    }
+		
+			    courseService.deleteCourse(id);
+			    response.sendRedirect("secretary");
+			    break;
+			}
+			case "save": {
+				if (!authService.hasRole("secretary")) {
+					response.sendError(HttpServletResponse.SC_FORBIDDEN);
+					return;
+			    }
+				
+				courseService.addCourse(request.getParameter("id"),request.getParameter("title"),request.getParameter("semester"),
+						request.getParameter("ects"),request.getParameter("teachingHours"),request.getParameter("teachingInstructor"), authService.getUser().getDepartmentId());
+				
+				response.sendRedirect("secretary");
+			    break;
+			}
+			case "update": {
+				if (!authService.hasRole("secretary")) {
+					response.sendError(HttpServletResponse.SC_FORBIDDEN);
+					return;
+			    }
+				
+			    Course course = courseService.getCourse(id);
+			    courseService.editCourse(id, getParameterOrDefault(request, "title", course.getTitle()),
+				    getParameterOrDefault(request, "ects", Integer.toString(course.getEcts())),
+				    getParameterOrDefault(request, "teachingHours", Integer.toString(course.getTeachingHours())),
+				    getParameterOrDefault(request, "teachingInstructor", course.getInstructorUsername()));
+			    response.sendRedirect("secretary");
+			    break;
+			}
+			default: {
+			    doGet(request, response);
+			    break;
+			}
+		}
     }
+    
 }

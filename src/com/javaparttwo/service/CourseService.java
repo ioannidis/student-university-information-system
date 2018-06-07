@@ -30,6 +30,41 @@ public class CourseService {
     public CourseService(DataSource ds) {
 	this.ds = ds;
     }
+    
+    public void addCourse(String id, String title, String semester, String ects, String teachingHours, String instructorUsername, String departmentId) {
+    	Connection con = null;
+    	PreparedStatement stmt = null;
+
+    	String str = "INSERT INTO javapart2.courses VALUES (?,?,?,?,?,?,?)";
+
+    	try {
+    	    con = ds.getConnection();
+
+    	    stmt = con.prepareStatement(str);
+    	    stmt.setString(1, id);
+    	    stmt.setString(2, title);
+    	    stmt.setString(3, ects);
+    	    stmt.setString(4, teachingHours);
+    	    stmt.setString(5, instructorUsername);
+    	    stmt.setString(6, semester);
+    	    stmt.setString(7, departmentId);
+
+    	    stmt.executeUpdate();
+
+    	} catch (SQLException e) {
+    	    e.printStackTrace();
+    	} finally {
+    	    try {
+    		stmt.close();
+    		con.close();
+    	    } catch (SQLException e) {
+    		e.printStackTrace();
+    	    }
+
+    	}
+
+    	return;
+    }
 
     /**
      * Returns the list of registered courses.
