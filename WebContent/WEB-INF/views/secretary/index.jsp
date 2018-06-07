@@ -17,11 +17,17 @@
   
 	<div class="content-wrapper">
 	  <div class="container-fluid">
+	  <div style="text-align:right">
+	  	<a href="courses?action=create" class="btn btn-info">Add new course</a>
+	  </div>
+	  <br/>
 	   <div class="card mb-3">
 	       <div class="card-header">
 	         <i class="fa fa-table"></i><b>Courses Table</b></div>
 	       <div class="card-body">
+	       
 	         <div class="table-responsive">
+	         
 			<table class="table table-bordered table-striped" id="dataTable" width="100%" cellspacing="0">
 				<thead>
 					<tr>

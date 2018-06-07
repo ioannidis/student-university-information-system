@@ -19,10 +19,10 @@
 	       <div class="card-header">
 	         <i class="fa fa-table"></i><b>Edit course</b></div>
 	       <div class="card-body">
-	<form action="courses?id=${course.courseId}&action=edit" method="POST">
+	<form action="courses?id=${course.courseId}&action=update" method="POST">
 	<div class="form-group">
 			<label for="title"><strong>Course Id</strong></label>
-			<input type="text" class="form-control"  name="title" id="title" value="${course.courseId}" disabled/>
+			<input type="text" class="form-control"  name="title" id="id" value="${course.courseId}" disabled/>
 		</div>
 		<div class="form-group">
 			<label for="title"><strong>Course Title</strong></label>
