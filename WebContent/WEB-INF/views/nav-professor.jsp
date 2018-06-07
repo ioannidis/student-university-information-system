@@ -9,14 +9,18 @@
 	<ul class="sidenav-second-level">
 		<li class="nav-item" data-toggle="tooltip" data-placement="right" title="" data-original-title="View Assigned Courses">
 			<a class="nav-link" href="<c:url value="/instructor"/>">
-				<i class="fa fa-fw fa-dashboard"></i>
-				<span class="nav-link-text">View Courses</span>
+				<span class="nav-link-text">
+					<i class="fas fa-graduation-cap"></i>
+					View Courses
+				</span>
 			</a>
 		</li>
 		<li class="nav-item" data-toggle="tooltip" data-placement="right" title="" data-original-title="Grade Students">
 			<a class="nav-link" href="<c:url value="/instructor/grade"/>">
-				<i class="fa fa-fw fa-dashboard"></i>
-				<span class="nav-link-text">Grade Students</span>
+				<span class="nav-link-text">
+					<i class="fas fa-edit"></i>
+					Grade Students
+				</span>
 			</a>
 		</li>
 	</ul>

@@ -14,11 +14,17 @@
 	    </button>
 	    <div class="collapse navbar-collapse" id="navbarResponsive">
 	      <ul class="navbar-nav navbar-sidenav" id="exampleAccordion">
-	        <li class="nav-item" data-toggle="tooltip" data-placement="right" title="" data-original-title="General course list">
-	          <a class="nav-link" href="<c:url value="/courses"/>">
-	            <i class="fa fa-fw fa-dashboard"></i>
-	            <span class="nav-link-text">General Course List</span>
-	          </a>
+	        <li class="nav-item" data-toggle="tooltip" data-placement="right" title="" data-original-title="All Courses">
+				<a class="nav-link" href="#" style="color:#fff !important; padding-bottom: 0px;">
+					<b>General</b>
+				</a>
+		          <a class="nav-link" href="<c:url value="/courses"/>">
+		            <i class="fa fa-fw fa-dashboard"></i>
+		            <span class="nav-link-text">
+		            	<i class="fas fa-university"></i>
+		            	All Courses
+		            </span>
+		          </a>
 	        </li>
 	        
 			<c:if test="${ user.roleId=='secretary' }">
@@ -37,7 +43,9 @@
 	      <ul class="navbar-nav ml-auto">
 	        <li class="nav-item">
 	          <a href="<c:url value="/logout"/>" class="nav-link">
-	            <i class="fa fa-fw fa-sign-out"></i>Logout</a>
+	            <i class="fas fa-sign-out-alt"></i>
+	            Logout
+	          </a>
 	        </li>
 	      </ul>
 	   </div>

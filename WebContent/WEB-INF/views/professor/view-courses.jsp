@@ -18,7 +18,8 @@
 			<c:forEach items="${ gradedCourses }" var="gradedCourse">
 				<div class="card mb-3">
 					<div class="card-header">
-						<c:out value="${ gradedCourse.title }" />
+						<i class="fas fa-book"></i><!--
+						 --><c:out value="${ gradedCourse.title }" />
 					</div>
 					<div class="card-body">
 						<div class="table-responsive">
