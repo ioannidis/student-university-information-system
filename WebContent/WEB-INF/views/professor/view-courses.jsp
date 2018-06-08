@@ -1,69 +1,62 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
-<%@ taglib uri = "http://java.sun.com/jsp/jstl/core" prefix = "c" %>
+	pageEncoding="ISO-8859-1"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
 <!DOCTYPE html>
 <html>
 <head>
-	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-	<title>Professor | View Courses</title>
-	<c:import url="/WEB-INF/views/styles.jsp"></c:import>	
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<title>Professor | View Courses</title>
+<c:import url="/WEB-INF/views/styles.jsp"></c:import>
 </head>
-<body class="fixed-nav sticky-footer bg-dark" id="page-top" cz-shortcut-listen="true">
+<body class="fixed-nav sticky-footer bg-dark" id="page-top"
+	cz-shortcut-listen="true">
 	<c:import url="/WEB-INF/views/nav.jsp"></c:import>
-	
+
 	<div class="content-wrapper">
 		<div class="container-fluid">
-		
-			<ol class="breadcrumb">
-				<li class="breadcrumb-item text-primary">
-					Professor
-				</li>
-				<li class="breadcrumb-item active">
-					View Courses
-				</li>
-			</ol>
-		
-			<c:forEach items="${ gradedCourses }" var="gradedCourse">
-				<div class="card mb-3">
-					<div class="card-header">
-						<i class="fas fa-book"></i><!--
-						 --><c:out value="${ gradedCourse.title }" />
-					</div>
-					<div class="card-body">
-						<div class="table-responsive">
-							<table class="table table-bordered prof-courses" width="100%" cellspacing="0">
-	
-								<thead>
-									<tr>
-										<th>First Name</th>
-										<th>Last Name</th>
-										<th>Email</th>
-										<th>Grade</th>
-									</tr>
-								</thead>
-								<tbody>
-									<c:forEach items="${ gradedCourse.gradedStudents }" var="gradedStudent">
-										<tr>
-											<th><c:out value="${ gradedStudent.name }" /></th>
-											<th><c:out value="${ gradedStudent.surname }" /></th>
-											<th><c:out value="${ gradedStudent.email }" /></th>
-											<th><c:out value="${ gradedStudent.grade }" /></th>
-										</tr>
-									</c:forEach>
-								</tbody>
-							</table>
-						</div>
-					
-					</div>
-				</div>
-			</c:forEach>
 
+			<ol class="breadcrumb">
+				<li class="breadcrumb-item text-primary">Professor</li>
+				<li class="breadcrumb-item active">View Courses</li>
+			</ol>
+
+			<div class="card-columns">
+				<c:forEach items="${ courses }" var="courses">
+					<div class="card">
+						<div class="card-header">
+							<i class="fas fa-graduation-cap"></i><c:out value="${ courses.title }" />
+						</div>
+						<div class="card-body">
+							<h6 class="card-title">Information</h6>
+							<p class="card-text">
+								ID:
+								<strong><c:out value="${ courses.courseId }" /></strong>
+								<br />
+								ECTs:
+								<strong><c:out value="${ courses.ects }" /></strong>
+								<br />
+								Teaching Hours:
+								<strong><c:out value="${ courses.teachingHours }" /></strong>
+								<br />
+								Semester:
+								<strong><c:out value="${ courses.semester }" /></strong>
+							</p>
+						</div>
+						<div class="card-footer">
+							<a href="gradestudents?course_id=<c:out value="${ courses.courseId }" />" class="btn btn-primary">
+								<i class="fas fa-users"></i>
+								Grade Students
+							</a>
+						</div>
+					</div>
+				</c:forEach>
+			</div>
 		</div>
-		
-		<c:import url="/WEB-INF/views/footer.jsp"></c:import>	
+
+		<c:import url="/WEB-INF/views/footer.jsp"></c:import>
 	</div>
-	
-	<c:import url="/WEB-INF/views/scripts.jsp"></c:import>	
+
+	<c:import url="/WEB-INF/views/scripts.jsp"></c:import>
 </body>
 </html>

@@ -5,34 +5,27 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-	<title>Professor | Assign Grade</title>
-	<c:import url="/WEB-INF/views/styles.jsp"></c:import>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<title>Professor | Home</title>
+<c:import url="/WEB-INF/views/styles.jsp"></c:import>
 </head>
-<body class="fixed-nav sticky-footer bg-dark" id="page-top" cz-shortcut-listen="true">
+<body class="fixed-nav sticky-footer bg-dark" id="page-top"
+	cz-shortcut-listen="true">
 
 	<!-- Navigation -->
 	<c:import url="/WEB-INF/views/nav.jsp"></c:import>
 
 	<div class="content-wrapper">
 		<div class="container-fluid">
-		
+
 			<ol class="breadcrumb">
-				<li class="breadcrumb-item text-primary">
-					Professor
-				</li>
-				<li class="breadcrumb-item text-primary">
-					Grade Student
-				</li>
-				<li class="breadcrumb-item active">
-					<c:out value="${student.fullName}" />
-				</li>
+				<li class="breadcrumb-item text-primary">Professor</li>
+				<li class="breadcrumb-item active">Home</li>
 			</ol>
 
-		
 			<div class="card mb-3">
 				<div class="card-header">
-					<i class="fas fa-edit"></i>Grade Student
+					<i class="fa fa-user-circle"></i><b>Professor Information</b>
 				</div>
 				<div class="card-body">
 					<div class="table-responsive">
@@ -40,16 +33,24 @@
 							width="100%" cellspacing="0">
 							<tbody>
 								<tr>
-									<td><b>First Name</b></td>
-									<td><c:out value="${student.name}" /></td>
+									<td><b>Username</b></td>
+									<td><c:out value="${user.username}" /></td>
 								</tr>
 								<tr>
-									<td><b>Last Name</b></td>
-									<td><c:out value="${student.surname}" /></td>
+									<td><b>Name</b></td>
+									<td><c:out value="${user.name}" /></td>
+								</tr>
+								<tr>
+									<td><b>Surname</b></td>
+									<td><c:out value="${user.surname}" /></td>
+								</tr>
+								<tr>
+									<td><b>Phone</b></td>
+									<td><c:out value="${user.phoneNumber}" /></td>
 								</tr>
 								<tr>
 									<td><b>Email</b></td>
-									<td><c:out value="${student.email}" /></td>
+									<td><c:out value="${user.email}" /></td>
 								</tr>
 							</tbody>
 						</table>

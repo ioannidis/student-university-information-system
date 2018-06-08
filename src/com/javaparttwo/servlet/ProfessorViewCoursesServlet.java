@@ -16,7 +16,7 @@ import com.javaparttwo.service.ProfessorService;
 /**
  * Handles instructor requests and responses.
  */
-@WebServlet({ "/ProfessorViewCoursesServlet", "/instructor", "/professor" })
+@WebServlet({ "/ProfessorViewCoursesServlet", "/instructorcourses" })
 public class ProfessorViewCoursesServlet extends HttpServlet {
     
     /**
@@ -50,8 +50,7 @@ public class ProfessorViewCoursesServlet extends HttpServlet {
     	
     	ProfessorService service = new ProfessorService(ds);
     	
-    	request.setAttribute(
-    		"gradedCourses", service.getGradedCourses(auth.getUser().getUsername()));
+    	request.setAttribute("courses", service.getCourses(auth.getUser().getUsername()));
     	request.getRequestDispatcher("WEB-INF/views/professor/view-courses.jsp").forward(request, response);
     }
 

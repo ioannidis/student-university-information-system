@@ -10,6 +10,14 @@
 		<li class="nav-item" data-toggle="tooltip" data-placement="right" title="" data-original-title="View Assigned Courses">
 			<a class="nav-link" href="<c:url value="/instructor"/>">
 				<span class="nav-link-text">
+					<i class="fas fa-home"></i>
+					Home
+				</span>
+			</a>
+		</li>
+		<li class="nav-item" data-toggle="tooltip" data-placement="right" title="" data-original-title="View Assigned Courses">
+			<a class="nav-link" href="<c:url value="/instructorcourses"/>">
+				<span class="nav-link-text">
 					<i class="fas fa-graduation-cap"></i>
 					View Courses
 				</span>

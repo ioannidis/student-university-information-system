@@ -10,9 +10,8 @@ import java.util.List;
 import javax.sql.DataSource;
 
 import com.javaparttwo.model.Course;
-import com.javaparttwo.model.GradedCourse;
+import com.javaparttwo.model.CourseStudentGrades;
 import com.javaparttwo.model.GradedStudent;
-import com.javaparttwo.model.PendingCourse;
 import com.javaparttwo.model.User;
 
 /**
@@ -120,13 +119,10 @@ public class ProfessorService {
 		return professors;
     }
     
-    public List<GradedCourse> getGradedCourses(String professorUsername) {
-	List<GradedCourse> gradedCourses = new ArrayList<>();
+    public List<Course> getCourses(String professorUsername) {
 	
-	String query = "select * " + 
-		"from courses " + 
-		"where instructor_username = ? " +
-		"and id in (select course_id from grades)";
+	List<Course> courses = new ArrayList<>();
+	String query = "select * from courses where instructor_username = ?";
 	
 	try (	Connection con 		= ds.getConnection();
 		PreparedStatement stmt 	= con.prepareStatement(query)) {
@@ -135,15 +131,14 @@ public class ProfessorService {
 
 	    try (ResultSet rs = stmt.executeQuery()) {
 		while (rs.next()) {
-		    gradedCourses.add(new GradedCourse(
+		    courses.add(new Course(
 			rs.getString("id"),
 			rs.getString("title"),
 			rs.getInt("ects"),
 			rs.getInt("teaching_hours"),
 			rs.getString("instructor_username"),
 			rs.getInt("semester"),
-			rs.getString("department_id"),
-			getGradedStudents(rs.getString("id"))));
+			rs.getString("department_id")));
 		    }
 	    }
 	    
@@ -151,7 +146,7 @@ public class ProfessorService {
 	    e.printStackTrace();
 	}
 	
-	return gradedCourses;
+	return courses;
     }
     
     public List<GradedStudent> getGradedStudents(String courseId) {
@@ -193,39 +188,6 @@ public class ProfessorService {
 	return gradedStudents;
     }
     
-    public List<PendingCourse> getPendingCourses(String professorUsername) {
-	List<PendingCourse> pendingCourses = new ArrayList<>();
-	
-	String query = "select * " + 
-		"from courses " + 
-		"where instructor_username = ?";
-	
-	try (	Connection con 		= ds.getConnection();
-		PreparedStatement stmt 	= con.prepareStatement(query)) {
-	    
-	    stmt.setString(1, professorUsername);
-
-	    try (ResultSet rs = stmt.executeQuery()) {
-		while (rs.next()) {
-		    pendingCourses.add(new PendingCourse(
-			rs.getString("id"),
-			rs.getString("title"),
-			rs.getInt("ects"),
-			rs.getInt("teaching_hours"),
-			rs.getString("instructor_username"),
-			rs.getInt("semester"),
-			rs.getString("department_id"),
-			getPendingStudents(rs.getString("id"))));
-		    }
-	    }
-	    
-	} catch (SQLException e) {
-	    e.printStackTrace();
-	}
-	
-	return pendingCourses;
-    }
-    
     public List<User> getPendingStudents(String courseId) {
 	List<User> pendingStudents = new ArrayList<>();
 	
@@ -260,5 +222,29 @@ public class ProfessorService {
 	}
 	
 	return pendingStudents;
+    }
+    
+    public List<CourseStudentGrades> getCoursesWithStudentAndGrades(CourseService courseService, String professorUsername) {
+	List<CourseStudentGrades> courses = new ArrayList<>();
+	
+	getCourses(professorUsername).forEach(c -> {
+	    courses.add(getCourseWithStudentsAndGrades(courseService, c.getCourseId()));
+	});
+	
+	return courses;
+    }
+    
+    public CourseStudentGrades getCourseWithStudentsAndGrades(CourseService courseService, String courseId) {
+	Course course = courseService.getCourse(courseId);
+	return new CourseStudentGrades(
+		course.getCourseId(),
+		course.getTitle(),
+		course.getEcts(),
+		course.getTeachingHours(),
+		course.getInstructorUsername(),
+		course.getSemester(),
+		course.getDepartmentId(),
+		getPendingStudents(courseId),
+		getGradedStudents(courseId));
     }
 }

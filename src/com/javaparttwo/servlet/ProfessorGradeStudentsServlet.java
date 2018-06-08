@@ -11,12 +11,13 @@ import javax.servlet.http.HttpServletResponse;
 import javax.sql.DataSource;
 
 import com.javaparttwo.service.AuthService;
+import com.javaparttwo.service.CourseService;
 import com.javaparttwo.service.ProfessorService;
 
 @WebServlet({ "/ProfessorGradeStudentsServlet", "/gradestudents" })
 public class ProfessorGradeStudentsServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
-   
+
     @Resource(name = "jdbc/javapart2")
     private DataSource ds;
 
@@ -34,11 +35,18 @@ public class ProfessorGradeStudentsServlet extends HttpServlet {
 	    return;
 	}
 
+	String courseId = request.getParameter("course_id");
+
+	CourseService courseService = new CourseService(ds);
 	ProfessorService service = new ProfessorService(ds);
 
-	request.setAttribute("pendingCourses", service.getPendingCourses(auth.getUser().getUsername()));
-	request.getRequestDispatcher("WEB-INF/views/professor/grade-students.jsp").forward(request, response);
-
+	if (courseId == null) {
+	    request.setAttribute("courses", service.getCoursesWithStudentAndGrades(courseService, auth.getUser().getUsername()));
+	    request.getRequestDispatcher("WEB-INF/views/professor/grade-students.jsp").forward(request, response);
+	} else {
+	    request.setAttribute("course", service.getCourseWithStudentsAndGrades(courseService, courseId));
+	    request.getRequestDispatcher("WEB-INF/views/professor/grade-course-students.jsp").forward(request, response);
+	}
     }
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response)

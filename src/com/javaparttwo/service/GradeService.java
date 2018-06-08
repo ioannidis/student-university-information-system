@@ -66,6 +66,28 @@ public class GradeService {
     	return null;
     }
     
+    public void updateGrade(String stdId, String courseId, int grade) {
+	String query1 = "delete from grades where student_id = ?";
+	String query2 = "insert into grades values (?, ?, ?)";
+	
+	try (	Connection con 		= ds.getConnection();
+		PreparedStatement stmt1 = con.prepareStatement(query1);
+		PreparedStatement stmt2 = con.prepareStatement(query2)) {
+
+	    stmt1.setString(1, stdId);
+	    
+	    stmt2.setString(1, stdId);
+	    stmt2.setString(2, courseId);
+	    stmt2.setInt(3, grade);
+	    
+	    stmt1.executeUpdate();
+	    stmt2.executeUpdate();
+	    
+	} catch (SQLException e) {
+	    e.printStackTrace();
+	}
+    }
+    
     public String getAverage(String stdId) {
     	Connection con = null;
     	ResultSet rs = null;
