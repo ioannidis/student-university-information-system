@@ -24,7 +24,7 @@
 	   				<div class="card mb-3">
 	   				
 						<div class="card-header">
-	         				<i class="fa fa-user-circle"></i><b>Student information</b>
+	         				<i class="fa fa-user-circle"></i><b>Secretary information</b>
 						</div>
 						
 						<div class="card-body">
