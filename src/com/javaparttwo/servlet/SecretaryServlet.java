@@ -15,6 +15,7 @@ import javax.sql.DataSource;
 import com.javaparttwo.model.Course;
 import com.javaparttwo.service.AuthService;
 import com.javaparttwo.service.CourseService;
+import com.javaparttwo.service.DepartmentService;
 
 /**
  * Handles secretary requests and responses.
@@ -50,7 +51,10 @@ public class SecretaryServlet extends HttpServlet {
 		    response.sendError(HttpServletResponse.SC_FORBIDDEN);
 		    return;
 		}
-	
+		
+		DepartmentService deptService = new DepartmentService(ds);
+		
+		request.setAttribute("department", deptService.getDepartment(auth.getUser().getDepartmentId()));
 		request.getRequestDispatcher("WEB-INF/views/secretary/index.jsp").forward(request, response);
     }
 

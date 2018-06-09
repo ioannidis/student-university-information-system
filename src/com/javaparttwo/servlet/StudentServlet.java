@@ -17,6 +17,7 @@ import com.javaparttwo.model.Grade;
 import com.javaparttwo.model.User;
 import com.javaparttwo.service.AuthService;
 import com.javaparttwo.service.CourseService;
+import com.javaparttwo.service.DepartmentService;
 import com.javaparttwo.service.GradeService;
 import com.javaparttwo.service.ProfessorService;
 
@@ -55,9 +56,9 @@ public class StudentServlet extends HttpServlet {
     	    return;
     	}
     	
-    	User user = authService.getUser();
+    	DepartmentService deptService = new DepartmentService(ds);
     	
-    	request.setAttribute("course", user);
+		request.setAttribute("department", deptService.getDepartment(authService.getUser().getDepartmentId()));
     	request.getRequestDispatcher("WEB-INF/views/student/index.jsp").forward(request, response);    	
     }
 
