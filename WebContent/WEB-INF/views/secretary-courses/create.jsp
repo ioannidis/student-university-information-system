@@ -1,20 +1,29 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <%@ taglib uri = "http://java.sun.com/jsp/jstl/core" prefix = "c" %>
-
+    
 <!DOCTYPE html>
 <html>
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-		<title>Create course</title>
+		<title>Secretary Management</title>
 		<c:import url="/WEB-INF/views/styles.jsp"></c:import>
 	</head>
-	<body>
+	<body class="fixed-nav sticky-footer bg-dark" id="page-top" cz-shortcut-listen="true">
+
 		<!-- Navigation -->
 		<c:import url="/WEB-INF/views/nav.jsp"></c:import>
+	
   
 		<div class="content-wrapper">
 			<div class="container-fluid">
+			
+				<ol class="breadcrumb">
+					<li class="breadcrumb-item text-primary"><a href="student" >Home</a></li>
+					<li class="breadcrumb-item text-primary"><a href="secretarycourses" >Cousres</a></li>
+					<li class="breadcrumb-item text-secondary">Create course</li>
+				</ol>
+				
 		    	<div class="card mb-3">
 		        	<div class="card-header">
 		         		<i class="fa fa-table"></i><b>Edit course</b>
