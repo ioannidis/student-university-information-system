@@ -67,7 +67,7 @@ public class GradeService {
     }
     
     public void updateGrade(String stdId, String courseId, int grade) {
-	String query1 = "delete from grades where student_id = ?";
+	String query1 = "delete from grades where student_id = ? and course_id = ?";
 	String query2 = "insert into grades values (?, ?, ?)";
 	
 	try (	Connection con 		= ds.getConnection();
@@ -75,6 +75,7 @@ public class GradeService {
 		PreparedStatement stmt2 = con.prepareStatement(query2)) {
 
 	    stmt1.setString(1, stdId);
+	    stmt1.setString(2, courseId);
 	    
 	    stmt2.setString(1, stdId);
 	    stmt2.setString(2, courseId);

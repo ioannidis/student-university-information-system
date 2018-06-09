@@ -13,6 +13,7 @@ import javax.sql.DataSource;
 import com.javaparttwo.model.Course;
 import com.javaparttwo.model.Grade;
 import com.javaparttwo.model.User;
+import com.javaparttwo.service.AuthService;
 import com.javaparttwo.service.CourseService;
 import com.javaparttwo.service.GradeService;
 import com.javaparttwo.service.UserService;
@@ -26,7 +27,19 @@ public class ProfessorGradeStudentServlet extends HttpServlet {
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
 	    throws ServletException, IOException {
+	
+	AuthService auth = new AuthService(request.getSession());
+	
+	if (!auth.isLoggedIn()) {
+	    response.sendRedirect("login");
+	    return;
+	}
 
+	if (!auth.hasRole("instructor")) {
+	    response.sendError(HttpServletResponse.SC_FORBIDDEN);
+	    return;
+	}
+	
 	String username = request.getParameter("username");
 	String courseId = request.getParameter("course_id");
 
