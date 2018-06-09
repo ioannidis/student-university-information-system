@@ -9,9 +9,17 @@
 	</a>
 	
 	<ul class="sidenav-second-level">
-		<li class="nav-item" data-toggle="tooltip" data-placement="right" title="" data-original-title="Manage Courses">
+	<li class="nav-item" data-toggle="tooltip" data-placement="right" title="" data-original-title="View Assigned Courses">
 			<a class="nav-link" href="<c:url value="/secretary"/>">
-				<i class="fa fa-fw fa-dashboard"></i>
+				<span class="nav-link-text">
+					<i class="fas fa-home"></i>
+					Home
+				</span>
+			</a>
+		</li>
+		<li class="nav-item" data-toggle="tooltip" data-placement="right" title="" data-original-title="Manage Courses">
+			<a class="nav-link" href="<c:url value="/secretarycourses"/>">
+				<i class="fa fa-fw fa-bookmark"></i>
 				<span class="nav-link-text">Manage Courses</span>
 			</a>
 		</li>

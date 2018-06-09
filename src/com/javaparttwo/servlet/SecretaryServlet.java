@@ -39,25 +39,19 @@ public class SecretaryServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
 	    throws ServletException, IOException {
 
-	AuthService auth = new AuthService(request.getSession());
-
-	if (!auth.isLoggedIn()) {
-	    response.sendRedirect("login");
-	    return;
-	}
-
-	if (!auth.hasRole("secretary")) {
-	    response.sendError(HttpServletResponse.SC_FORBIDDEN);
-	    return;
-	}
-
-	CourseService courseService = new CourseService(ds);
-
-	List<Course> courses = new ArrayList<>();
-	courses = courseService.getCourses(auth.getUser().getDepartmentId());
-
-	request.setAttribute("courses", courses);
-	request.getRequestDispatcher("WEB-INF/views/secretary/index.jsp").forward(request, response);
+		AuthService auth = new AuthService(request.getSession());
+	
+		if (!auth.isLoggedIn()) {
+		    response.sendRedirect("login");
+		    return;
+		}
+	
+		if (!auth.hasRole("secretary")) {
+		    response.sendError(HttpServletResponse.SC_FORBIDDEN);
+		    return;
+		}
+	
+		request.getRequestDispatcher("WEB-INF/views/secretary/index.jsp").forward(request, response);
     }
 
     /**
@@ -65,7 +59,7 @@ public class SecretaryServlet extends HttpServlet {
      */
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
 	    throws ServletException, IOException {
-	doGet(request, response);
+    	doGet(request, response);
     }
 
 }

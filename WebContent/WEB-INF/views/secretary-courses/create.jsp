@@ -53,7 +53,7 @@
 							</div>
 							<br />
 							<input type="submit" class="btn btn-success" value="Save" />
-							<a href="<c:url value="/secretary"/>" class="btn btn-warning">Cancel</a>
+							<a href="<c:url value="secretarycourses"/>" class="btn btn-warning">Cancel</a>
 						</form>
 		 			</div>
 		      </div>
