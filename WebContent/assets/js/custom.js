@@ -15,5 +15,13 @@ $(document).ready(function() {
     $('table.prof-courses').DataTable({
     	"iDisplayLength": 25
     });
+    
+//    $('#grade-tabs a[href="#pending-students"]').tab('show') // Select first tab
+    $('#grade-tabs a').on('click', function (e) {
+	  e.preventDefault()
+	  $(this).tab('show')
+	});
+        
+    
 } );
 
