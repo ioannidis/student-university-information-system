@@ -53,7 +53,7 @@
 									<td><c:out value="${user.email}" /></td>
 								</tr>
 								<tr>
-									<td><b>Department]</b></td>
+									<td><b>Department</b></td>
 									<td><c:out value="${department}" /></td>
 								</tr>
 							</tbody>

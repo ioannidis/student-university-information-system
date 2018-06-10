@@ -24,88 +24,103 @@
 				<li class="breadcrumb-item active"><c:out
 						value="${course.title}" /></li>
 			</ol>
+			
+			<ul class="nav nav-pills mb-3" id="grade-tabs" role="tablist">
+				<li class="nav-item">
+				    <a class="nav-link active" id="pills-home-tab" data-toggle="grade-tab" href="#pending-students" role="tab" aria-controls="pending-students" aria-selected="true">Pending Students</a>
+				</li>
+				<li class="nav-item">
+				    <a class="nav-link" id="pills-profile-tab" data-toggle="grade-tab" href="#graded-students" role="tab" aria-controls="graded-students" aria-selected="false">Graded Students</a>
+				</li>
+			</ul>
 
-			<div class="card mb-3">
-				<div class="card-header">
-					<i class="fas fa-book"></i>
-					<c:out value="${ course.title }" />
+			<div class="tab-content" id="pills-tabContent">
+				<div class="tab-pane fade active show" id="pending-students" role="tabpanel" aria-labelledby="v-pills-home-tab">
+					<div class="card mb-3">
+						<div class="card-header">
+							<i class="fas fa-book"></i>
+							<c:out value="${ pendingCourse.title }" />
+						</div>
+						<div class="card-body">
+							<div class="table-responsive">
+								<table class="table table-bordered prof-courses" width="100%"
+									cellspacing="0">
+									<thead>
+										<tr>
+											<th>Id</th>
+											<th>First Name</th>
+											<th>Last Name</th>
+											<th>Email</th>
+											<th>Action</th>
+										</tr>
+									</thead>
+									<tbody>
+										
+										<c:forEach items="${ pendingCourse.students }"
+											var="pendingStudent">
+											<tr>
+												<th><c:out value="${ pendingStudent.username }" /></th>
+												<th><c:out value="${ pendingStudent.name }" /></th>
+												<th><c:out value="${ pendingStudent.surname }" /></th>
+												<th><c:out value="${ pendingStudent.email }" /></th>
+												<th><a class="btn btn-success"
+													href="gradestudent?username=<c:out value="${ pendingStudent.username }" />&course_id=<c:out value="${ pendingCourse.courseId }" />">
+														<i class="fas fa-plus-circle"></i> Assign
+												</a></th>
+											</tr>
+		
+										</c:forEach>
+									</tbody>
+								</table>
+							</div>
+						</div>
+					</div>
 				</div>
-				<div class="card-body">
-					<h5 class="card-title">Pending Students</h5>
-					<div class="table-responsive">
-						<table class="table table-bordered prof-courses" width="100%"
-							cellspacing="0">
-							<thead>
-								<tr>
-									<th>First Name</th>
-									<th>Last Name</th>
-									<th>Email</th>
-									<th>Grade</th>
-								</tr>
-							</thead>
-							<tbody>
-
-								<c:forEach items="${ course.pendingStudents }"
-									var="pendingStudent">
-
-									<tr>
-										<th><c:out value="${ pendingStudent.name }" /></th>
-										<th><c:out value="${ pendingStudent.surname }" /></th>
-										<th><c:out value="${ pendingStudent.email }" /></th>
-										<th><a class="btn btn-success"
-											href="gradestudent?username=<c:out value="${ pendingStudent.username }" />&course_id=<c:out value="${ course.courseId }" />">
-												<i class="fas fa-plus-circle"></i> Assign
-										</a></th>
-									</tr>
-
-								</c:forEach>
-							</tbody>
-						</table>
+				<div class="tab-pane fade" id="graded-students" role="tabpanel" aria-labelledby="v-pills-home-tab">
+					<div class="card mb-3">
+						<div class="card-header">
+							<i class="fas fa-book"></i>
+							<c:out value="${ gradedCourse.title }" />
+						</div>
+						<div class="card-body">
+							<div class="table-responsive">
+								<table class="table table-bordered prof-courses" width="100%"
+									cellspacing="0">
+									<thead>
+										<tr>
+											<th>Id</th>
+											<th>First Name</th>
+											<th>Last Name</th>
+											<th>Email</th>
+											<th>Grade</th>
+											<th>Action</th>
+										</tr>
+									</thead>
+									<tbody>
+		
+										<c:forEach items="${ gradedCourse.students }"
+											var="gradedStudent">
+											<tr>
+												<th><c:out value="${ gradedStudent.username }" /></th>
+												<th><c:out value="${ gradedStudent.name }" /></th>
+												<th><c:out value="${ gradedStudent.surname }" /></th>
+												<th><c:out value="${ gradedStudent.email }" /></th>
+												<th><c:out value="${ gradedStudent.grade }" /></th>
+												<th><a
+													class="btn btn-warning"
+													href="gradestudent?username=<c:out value="${ gradedStudent.username }" />&course_id=<c:out value="${ gradedCourse.courseId }" />">
+														<i class="fas fa-edit"></i> Change
+												</a></th>
+											</tr>
+										</c:forEach>
+		
+									</tbody>
+								</table>
+							</div>
+						</div>
 					</div>
 				</div>
 			</div>
-
-			<div class="card mb-3">
-				<div class="card-header">
-					<i class="fas fa-book"></i>
-					<c:out value="${ course.title }" />
-				</div>
-				<div class="card-body">
-					<h5 class="card-title">Graded Students</h5>
-					<div class="table-responsive">
-						<table class="table table-bordered prof-courses" width="100%"
-							cellspacing="0">
-							<thead>
-								<tr>
-									<th>First Name</th>
-									<th>Last Name</th>
-									<th>Email</th>
-									<th>Grade</th>
-								</tr>
-							</thead>
-							<tbody>
-
-								<c:forEach items="${ course.gradedStudents }"
-									var="gradedStudent">
-									<tr>
-										<th><c:out value="${ gradedStudent.name }" /></th>
-										<th><c:out value="${ gradedStudent.surname }" /></th>
-										<th><c:out value="${ gradedStudent.email }" /></th>
-										<th><span class="mr-2"><c:out
-													value="${ gradedStudent.grade }" /></span> <a
-											class="btn btn-warning"
-											href="gradestudent?username=<c:out value="${ gradedStudent.username }" />&course_id=<c:out value="${ course.courseId }" />">
-												<i class="fas fa-edit"></i> Change
-										</a></th>
-									</tr>
-								</c:forEach>
-
-							</tbody>
-						</table>
-					</div>
-				</div>
-			</div>
-
 		</div>
 		<c:import url="/WEB-INF/views/footer.jsp"></c:import>
 	</div>

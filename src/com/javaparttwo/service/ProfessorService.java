@@ -5,6 +5,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import javax.sql.DataSource;
@@ -188,8 +189,8 @@ public class ProfessorService {
 	return gradedStudents;
     }
     
-    public List<User> getPendingStudents(String courseId) {
-	List<User> pendingStudents = new ArrayList<>();
+    public List<GradedStudent> getPendingStudents(String courseId) {
+	List<GradedStudent> pendingStudents = new ArrayList<>();
 	
 	String query = "select * " + 
 		"from users\r\n" + 
@@ -206,7 +207,7 @@ public class ProfessorService {
 	    try (ResultSet rs = stmt.executeQuery()) {
 		while (rs.next()) {
 		    pendingStudents.add(
-			    new User(
+			    new GradedStudent(
 				rs.getString("username"),
 				null,
 				rs.getString("first_name"),
@@ -214,7 +215,8 @@ public class ProfessorService {
 				rs.getLong("phone_number"),
 				rs.getString("email"),
 				rs.getString("role_id"),
-				rs.getString("department_id")));
+				rs.getString("department_id"),
+				-1));
 		    }
 	    }
 	} catch (SQLException e) {
@@ -224,18 +226,32 @@ public class ProfessorService {
 	return pendingStudents;
     }
     
-    public List<CourseStudentGrades> getCoursesWithStudentAndGrades(CourseService courseService, String professorUsername) {
-	List<CourseStudentGrades> courses = new ArrayList<>();
+    public HashMap<String, List<CourseStudentGrades>> getCoursesWithStudentAndGrades(CourseService courseService, String professorUsername) {
+    	HashMap<String, List<CourseStudentGrades>> courses = new HashMap<String, List<CourseStudentGrades>>();
+    	
+    	List<CourseStudentGrades> pendingList = new ArrayList<>();
+    	List<CourseStudentGrades> gradedList = new ArrayList<>();
+    	
+    	courses.put("pending", pendingList);
+	    courses.put("graded", gradedList);
 	
 	getCourses(professorUsername).forEach(c -> {
-	    courses.add(getCourseWithStudentsAndGrades(courseService, c.getCourseId()));
+		courses.get("pending").add(getCourseWithStudentsAndGrades(courseService, c.getCourseId() , "pending"));
+		courses.get("graded").add(getCourseWithStudentsAndGrades(courseService, c.getCourseId() , "graded"));
 	});
 	
 	return courses;
     }
     
-    public CourseStudentGrades getCourseWithStudentsAndGrades(CourseService courseService, String courseId) {
+    public CourseStudentGrades getCourseWithStudentsAndGrades(CourseService courseService, String courseId, String status) {
 	Course course = courseService.getCourse(courseId);
+	List<GradedStudent> student = null;
+	
+	if ((status == null) || status.equals("pending"))
+		student = getPendingStudents(courseId);
+	else
+		student = getGradedStudents(courseId);
+	
 	return new CourseStudentGrades(
 		course.getCourseId(),
 		course.getTitle(),
@@ -244,7 +260,7 @@ public class ProfessorService {
 		course.getInstructorUsername(),
 		course.getSemester(),
 		course.getDepartmentId(),
-		getPendingStudents(courseId),
-		getGradedStudents(courseId));
+		student,
+		status);
     }
 }

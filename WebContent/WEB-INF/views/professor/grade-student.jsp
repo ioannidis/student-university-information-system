@@ -44,6 +44,10 @@
 									<td><c:out value="${course.title}" /></td>
 								</tr>
 								<tr>
+									<td><b>Id</b></td>
+									<td><c:out value="${student.username}" /></td>
+								</tr>
+								<tr>
 									<td><b>First Name</b></td>
 									<td><c:out value="${student.name}" /></td>
 								</tr>

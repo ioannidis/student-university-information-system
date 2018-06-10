@@ -44,7 +44,8 @@ public class ProfessorGradeStudentsServlet extends HttpServlet {
 	    request.setAttribute("courses", service.getCoursesWithStudentAndGrades(courseService, auth.getUser().getUsername()));
 	    request.getRequestDispatcher("WEB-INF/views/professor/grade-students.jsp").forward(request, response);
 	} else {
-	    request.setAttribute("course", service.getCourseWithStudentsAndGrades(courseService, courseId));
+	    request.setAttribute("pendingCourse", service.getCourseWithStudentsAndGrades(courseService, courseId, "pending"));
+	    request.setAttribute("gradedCourse", service.getCourseWithStudentsAndGrades(courseService, courseId, "graded"));
 	    request.getRequestDispatcher("WEB-INF/views/professor/grade-course-students.jsp").forward(request, response);
 	}
     }
