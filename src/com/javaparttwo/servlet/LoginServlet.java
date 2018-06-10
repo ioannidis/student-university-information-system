@@ -11,6 +11,8 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.sql.DataSource;
 
+import org.jasypt.util.password.StrongPasswordEncryptor;
+
 import com.javaparttwo.model.User;
 import com.javaparttwo.service.AuthService;
 import com.javaparttwo.service.LoginService;
@@ -20,11 +22,13 @@ import com.javaparttwo.service.LoginService;
  */
 @WebServlet({ "/LoginServlet", "/login" })
 public class LoginServlet extends HttpServlet {
-    
+
     /**
      * Java related serial version UID.
      */
     private static final long serialVersionUID = 1L;
+
+    private StrongPasswordEncryptor encryptor = new StrongPasswordEncryptor();
 
     /**
      * An instance of the database connection.
@@ -59,9 +63,12 @@ public class LoginServlet extends HttpServlet {
 	LoginService login = new LoginService(ds);
 	HttpSession session = request.getSession();
 
-	User user = login.auth(request.getParameter("username"), request.getParameter("password"));
+	String username = request.getParameter("username");
+	String password = request.getParameter("password");
 
-	if (user != null) {
+	User user = login.auth(username);
+
+	if (user != null && encryptor.checkPassword(password, user.getPassword())) {
 	    session = request.getSession();
 	    session.setAttribute("loggedIn", true);
 	    session.setAttribute("user", user);

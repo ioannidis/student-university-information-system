@@ -18,7 +18,7 @@ public class LoginService {
      * An instance of the database connection.
      */
     private DataSource ds;
-
+    
     /**
      * Initializes login service.
      * 
@@ -38,26 +38,32 @@ public class LoginService {
      *            The password of the user.
      * @return The user object or null.
      */
-    public User auth(String username, String password) {
+    public User auth(String username) {
 
 	Connection con = null;
 	ResultSet rs = null;
 	PreparedStatement stmt = null;
 
-	String str = "SELECT * FROM javapart2.users WHERE username=? AND password=?";
+	String str = "SELECT * FROM users WHERE username=?";
 
 	try {
 	    con = ds.getConnection();
 
 	    stmt = con.prepareStatement(str);
 	    stmt.setString(1, username);
-	    stmt.setString(2, password);
 
 	    rs = stmt.executeQuery();
 
 	    if (rs.next()) {
-		return new User(rs.getString("username"), null, rs.getString("first_name"), rs.getString("last_name"),
-			rs.getLong("phone_number"), rs.getString("email"), rs.getString("role_id"), rs.getString("department_id"));
+		return new User(
+			rs.getString("username"),
+			rs.getString("password"),
+			rs.getString("first_name"),
+			rs.getString("last_name"),
+			rs.getLong("phone_number"),
+			rs.getString("email"),
+			rs.getString("role_id"),
+			rs.getString("department_id"));
 	    }
 
 	} catch (SQLException e) {
