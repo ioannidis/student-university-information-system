@@ -5,6 +5,9 @@
 <!-- Bootstrap core JavaScript-->
 <script src="<c:url value="/assets/js/jquery.min.js"/>"></script>
 <script src="<c:url value="/assets/js/bootstrap.bundle.min.js"/>"></script>
+<script src="<c:url value="/assets/js/bootstrap.min.js"/>"></script>
+
+
 
 <script src="<c:url value="/assets/js/jquery.dataTables.min.js"/>"></script>
 <script src="<c:url value="/assets/js/dataTables.bootstrap4.min.js"/>"></script>
