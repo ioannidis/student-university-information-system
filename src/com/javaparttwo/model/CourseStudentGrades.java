@@ -4,22 +4,23 @@ import java.util.List;
 
 public class CourseStudentGrades extends Course {
 
-    private List<User> pendingStudents;
-    private List<GradedStudent> gradedStudents;
+    private List<GradedStudent> students;
+    private String status;
 
     public CourseStudentGrades(String courseId, String title, int ects, int teachingHours, String instructorUsername,
-	    int semester, String department, List<User> pendingStudents, List<GradedStudent> gradedStudents) {
-	super(courseId, title, ects, teachingHours, instructorUsername, semester, department);
+	    int semester, String department, List<GradedStudent> students, String status) {
+    	super(courseId, title, ects, teachingHours, instructorUsername, semester, department);
 
-	this.pendingStudents = pendingStudents;
-	this.gradedStudents = gradedStudents;
+		this.students = students;
+		this.status = status;
+	
     }
 
-    public List<User> getPendingStudents() {
-	return pendingStudents;
+    public List<GradedStudent> getStudents() {
+    	return students;
     }
-
-    public List<GradedStudent> getGradedStudents() {
-	return gradedStudents;
+    
+    public String getStatus() {
+    	return status;
     }
 }
