@@ -63,7 +63,7 @@
 									<td><b>Grade</b></td>
 									<td>
 										<form class="form-inline" action="gradestudent?username=<c:out value="${ username }" />&course_id=<c:out value="${ courseId }" />" method="post">
-											<input type="number" min="0" max="10" value="<c:out value="${ grade }" />" class="form-control col-md-1" name="grade" placeholder="Grade" required>
+											<input type="number" min="0" max="10" value="<c:out value="${ grade }" />" class="form-control col-md-2" name="grade" placeholder="Grade" required>
 											<button type="submit" class="btn btn-primary ml-2">Change</button>
 										</form>
 									</td>
