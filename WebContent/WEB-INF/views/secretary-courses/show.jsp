@@ -54,9 +54,9 @@
 	        <tr>
 	        	<td><b>Actions</b></td>
 				<td>
-					<a class="btn btn-primary" href="secretarycourses" class="btn">Back</a>
-					<a class="btn btn-warning" href="secretarycourses?id=${course.courseId}&action=edit" class="btn">Edit</a>
-					<a class="btn btn-danger" href="secretarycourses?id=${course.courseId}&action=delete" class="btn">Delete</a>
+					<a class="btn btn-primary" href="secretarycourses" class="btn"><i class="fas fa-caret-left" style="margin-right:8px"></i>Back</a>
+					<a class="btn btn-warning" href="secretarycourses?id=${course.courseId}&action=edit" class="btn"><i class="far fa-edit" style="margin-right:8px"></i>Edit</a>
+					<a class="btn btn-danger" href="secretarycourses?id=${course.courseId}&action=delete" class="btn"><i class="fas fa-times" style="margin-right:8px"></i>Delete</a>
 				</td>
 			</tr>
 		</tbody>
