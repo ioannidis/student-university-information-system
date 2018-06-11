@@ -19,9 +19,9 @@
 			<div class="container-fluid">
 			
 				<ol class="breadcrumb">
-					<li class="breadcrumb-item text-primary"><a href="student" >Home</a></li>
+					<li class="breadcrumb-item text-primary"><a href="secretary" >Secretary</a></li>
 					<li class="breadcrumb-item text-primary"><a href="secretarycourses" >Cousres</a></li>
-					<li class="breadcrumb-item text-secondary"><c:out value="${course.title}" /></li>
+					<li class="breadcrumb-item active"><c:out value="${course.title}" /></li>
 				</ol>
 	  
 	   <div class="card mb-3">

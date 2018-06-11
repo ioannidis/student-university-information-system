@@ -17,7 +17,7 @@
 		<div class="container-fluid">
 
 			<ol class="breadcrumb">
-				<li class="breadcrumb-item text-primary">Professor</li>
+				<li class="breadcrumb-item text-primary"><a href="instructor">Professor</a></li>
 				<li class="breadcrumb-item active">View Courses</li>
 			</ol>
 
@@ -25,7 +25,7 @@
 				<c:forEach items="${ courses }" var="courses">
 					<div class="card">
 						<div class="card-header">
-							<i class="fas fa-graduation-cap"></i><c:out value="${ courses.title }" />
+							<i class="fas fa-graduation-cap"></i><b><c:out value="${ courses.title }" /></b>
 						</div>
 						<div class="card-body">
 							<h6 class="card-title">Information</h6>

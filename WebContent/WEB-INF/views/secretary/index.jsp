@@ -18,7 +18,7 @@
 	  			<div class="container-fluid">
 	  
 				  	<ol class="breadcrumb">
-						<li class="breadcrumb-item text-primary"><a href="student" >Home</a></li>
+						<li class="breadcrumb-item text-primary"><a href="secretary" >Secretary</a></li>
 					</ol>
 					
 	   				<div class="card mb-3">

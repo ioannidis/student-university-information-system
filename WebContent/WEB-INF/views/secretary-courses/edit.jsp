@@ -19,9 +19,9 @@
 			<div class="container-fluid">
 			
 				<ol class="breadcrumb">
-					<li class="breadcrumb-item text-primary"><a href="student" >Home</a></li>
+					<li class="breadcrumb-item text-primary"><a href="secretary" >Secretary</a></li>
 					<li class="breadcrumb-item text-primary"><a href="secretarycourses" >Cousres</a></li>
-					<li class="breadcrumb-item text-secondary">Edit course</li>
+					<li class="breadcrumb-item active">Edit course</li>
 				</ol>
 				
 	   <div class="card mb-3">
@@ -56,8 +56,8 @@
 			</select>
 		</div>
 		<br />
-		<input type="submit" class="btn btn-success" value="Update Course" />
-		<a href="<c:url value="secretarycourses"/>" class="btn btn-warning">Cancel</a>
+		<button type="submit" class="btn btn-success"><i class="far fa-save" style="margin-right:8px"></i>Update Course</button>
+		<a href="<c:url value="secretarycourses"/>" class="btn btn-warning"><i class="fas fa-caret-left" style="margin-right:8px"></i>Cancel</a>
 	</form>
 	 </div>
 	      </div>

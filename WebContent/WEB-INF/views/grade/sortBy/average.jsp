@@ -38,7 +38,7 @@
 								    </c:otherwise>
 								</c:choose>
 							</th>
-							<th><a class="btn btn-primary" href="studentgrades?courseId=${grade.courseId}" class="btn">Show</a></th>
+							<th><a class="btn btn-primary" href="studentgrades?courseId=${grade.courseId}"><i class="fas fa-external-link-alt" style="margin-right:8px"></i>Show</a></th>
 						</tr>
 				    </c:forEach>
 				</tbody>

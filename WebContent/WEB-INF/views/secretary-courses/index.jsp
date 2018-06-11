@@ -19,12 +19,12 @@
 			<div class="container-fluid">
 			
 				<ol class="breadcrumb">
-					<li class="breadcrumb-item text-primary"><a href="student" >Home</a></li>
+					<li class="breadcrumb-item text-primary"><a href="secretary" >Secretary</a></li>
 					<li class="breadcrumb-item text-primary"><a href="secretarycourses" >Cousres</a></li>
 				</ol>
 				
 				<div style="text-align:right">
-				  	<a href="secretarycourses?action=create" class="btn btn-info">Add new course</a>
+				  	<a href="secretarycourses?action=create" class="btn btn-info"><i class="far fa-plus-square" style="margin-right:8px"></i>Add new course</a>
 				</div>
 				<br/>
 				<div class="card mb-3">
@@ -54,9 +54,9 @@
 											<td><c:out value="${course.teachingHours}" /></td>
 											<td><c:out value="${course.instructorUsername}" /></td>
 											<td>
-												<a class="btn btn-primary" href="secretarycourses?id=${course.courseId}&action=show" class="btn">Show</a>
-												<a class="btn btn-warning" href="secretarycourses?id=${course.courseId}&action=edit" class="btn">Edit</a>
-												<a class="btn btn-danger" href="secretarycourses?id=${course.courseId}&action=delete" class="btn">Delete</a>
+												<a class="btn btn-primary" href="secretarycourses?id=${course.courseId}&action=show"><i class="fas fa-external-link-alt" style="margin-right:8px"></i>Show</a>
+												<a class="btn btn-warning" href="secretarycourses?id=${course.courseId}&action=edit"><i class="far fa-edit" style="margin-right:8px"></i>Edit</a>
+												<a class="btn btn-danger" href="secretarycourses?id=${course.courseId}&action=delete"><i class="fas fa-times" style="margin-right:8px"></i>Delete</a>
 											</td>
 										</tr>
 								    </c:forEach>

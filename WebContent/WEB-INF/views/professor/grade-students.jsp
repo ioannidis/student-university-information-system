@@ -17,7 +17,7 @@
 		<div class="container-fluid">
 
 			<ol class="breadcrumb">
-				<li class="breadcrumb-item text-primary">Professor</li>
+				<li class="breadcrumb-item text-primary"><a href="instructor">Professor</a></li>
 				<li class="breadcrumb-item active">Grade Students</li>
 			</ol>
 			
@@ -41,15 +41,15 @@
 										<div class="card mb-3">
 											<div class="card-header">
 												<i class="fas fa-book"></i>
-												<c:out value="${ course.title }" />
+												<b><c:out value="${ course.title }" /></b>
 											</div>
 											<div class="card-body">
-												<h5 class="card-title">Pending Students</h5>
 												<div class="table-responsive">
 													<table class="table table-bordered prof-courses" width="100%"
 														cellspacing="0">
 														<thead>
 															<tr>
+																<th>Id</th>
 																<th>First Name</th>
 																<th>Last Name</th>
 																<th>Email</th>
@@ -62,6 +62,7 @@
 																var="pendingStudent">
 						
 																<tr>
+																	<th><c:out value="${ pendingStudent.username }" /></th>
 																	<th><c:out value="${ pendingStudent.name }" /></th>
 																	<th><c:out value="${ pendingStudent.surname }" /></th>
 																	<th><c:out value="${ pendingStudent.email }" /></th>
@@ -86,15 +87,15 @@
 										<div class="card mb-3">
 											<div class="card-header">
 												<i class="fas fa-book"></i>
-												<c:out value="${ course.title }" />
+												<b><c:out value="${ course.title }" /></b>
 											</div>
 											<div class="card-body">
-												<h5 class="card-title">Graded Students</h5>
 												<div class="table-responsive">
 													<table class="table table-bordered prof-courses" width="100%"
 														cellspacing="0">
 														<thead>
 															<tr>
+																<th>Id</th>
 																<th>First Name</th>
 																<th>Last Name</th>
 																<th>Email</th>
@@ -106,10 +107,11 @@
 															<c:forEach items="${ course.students }"
 																var="gradedStudent">
 																<tr>
+																	<th><c:out value="${ gradedStudent.username }" /></th>
 																	<th><c:out value="${ gradedStudent.name }" /></th>
 																	<th><c:out value="${ gradedStudent.surname }" /></th>
 																	<th><c:out value="${ gradedStudent.email }" /></th>
-																	<th><c:out value="${ gradedStudent.grade }" /></th>
+																	<th style="color:red"><c:out value="${ gradedStudent.grade }" /></th>
 																</tr>
 															</c:forEach>
 						

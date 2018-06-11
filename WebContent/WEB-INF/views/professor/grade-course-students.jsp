@@ -19,10 +19,9 @@
 		<div class="container-fluid">
 
 			<ol class="breadcrumb">
-				<li class="breadcrumb-item text-primary">Professor</li>
-				<li class="breadcrumb-item text-primary">Grade Students</li>
-				<li class="breadcrumb-item active"><c:out
-						value="${course.title}" /></li>
+				<li class="breadcrumb-item text-primary"><a href="instructor">Professor</a></li>
+				<li class="breadcrumb-item text-primary"><a href="gradestudents?course_id=<c:out value="${pendingCourse.courseId}" />">Grade  Student</a></li>
+				<li class="breadcrumb-item active"><c:out value="${pendingCourse.title}" /></li>
 			</ol>
 			
 			<ul class="nav nav-pills mb-3" id="grade-tabs" role="tablist">
@@ -39,7 +38,7 @@
 					<div class="card mb-3">
 						<div class="card-header">
 							<i class="fas fa-book"></i>
-							<c:out value="${ pendingCourse.title }" />
+							<b><c:out value="${ pendingCourse.title }" /></b>
 						</div>
 						<div class="card-body">
 							<div class="table-responsive">
@@ -80,7 +79,7 @@
 					<div class="card mb-3">
 						<div class="card-header">
 							<i class="fas fa-book"></i>
-							<c:out value="${ gradedCourse.title }" />
+							<b><c:out value="${ gradedCourse.title }" /></b>
 						</div>
 						<div class="card-body">
 							<div class="table-responsive">
@@ -105,7 +104,7 @@
 												<th><c:out value="${ gradedStudent.name }" /></th>
 												<th><c:out value="${ gradedStudent.surname }" /></th>
 												<th><c:out value="${ gradedStudent.email }" /></th>
-												<th><c:out value="${ gradedStudent.grade }" /></th>
+												<th style="color:red"><c:out value="${ gradedStudent.grade }" /></th>
 												<th><a
 													class="btn btn-warning"
 													href="gradestudent?username=<c:out value="${ gradedStudent.username }" />&course_id=<c:out value="${ gradedCourse.courseId }" />">

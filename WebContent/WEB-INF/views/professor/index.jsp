@@ -19,8 +19,7 @@
 		<div class="container-fluid">
 
 			<ol class="breadcrumb">
-				<li class="breadcrumb-item text-primary">Professor</li>
-				<li class="breadcrumb-item active">Home</li>
+				<li class="breadcrumb-item"><a href="instructor">Professor</a></li>
 			</ol>
 
 			<div class="card mb-3">

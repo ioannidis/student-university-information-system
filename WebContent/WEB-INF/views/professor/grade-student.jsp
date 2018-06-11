@@ -18,12 +18,8 @@
 		<div class="container-fluid">
 		
 			<ol class="breadcrumb">
-				<li class="breadcrumb-item text-primary">
-					Professor
-				</li>
-				<li class="breadcrumb-item text-primary">
-					Grade Student
-				</li>
+				<li class="breadcrumb-item text-primary"><a href="instructor">Professor</a></li>
+				<li class="breadcrumb-item text-primary"><a href="gradestudents?course_id=<c:out value="${course.courseId}" />">Grade  Student</a></li>
 				<li class="breadcrumb-item active">
 					<c:out value="${student.fullName}" />
 				</li>
@@ -64,7 +60,7 @@
 									<td>
 										<form class="form-inline" action="gradestudent?username=<c:out value="${ username }" />&course_id=<c:out value="${ courseId }" />" method="post">
 											<input type="number" min="0" max="10" value="<c:out value="${ grade }" />" class="form-control col-md-2" name="grade" placeholder="Grade" required>
-											<button type="submit" class="btn btn-primary ml-2">Change</button>
+											<button type="submit" class="btn btn-success ml-2"><i class="far fa-save" style="margin-right:8px"></i>Save</button>
 										</form>
 									</td>
 								</tr>

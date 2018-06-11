@@ -18,7 +18,7 @@
 	  <div class="container-fluid">
 	  
 	  	<ol class="breadcrumb">
-			<li class="breadcrumb-item text-primary"><a href="student" >Home</a></li>
+			<li class="breadcrumb-item text-primary"><a href="student" >Student</a></li>
 			<li class="breadcrumb-item text-primary"><a href="studentgrades" >Grades</a></li>
 		</ol>
 	  

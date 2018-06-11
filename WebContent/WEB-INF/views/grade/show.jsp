@@ -18,9 +18,9 @@
 			<div class="container-fluid">
 			
 				<ol class="breadcrumb">
-					<li class="breadcrumb-item text-primary"><a href="student" >Home</a></li>
+					<li class="breadcrumb-item text-primary"><a href="student" >Student</a></li>
 					<li class="breadcrumb-item text-primary"><a href="studentgrades" >Grades</a></li>
-					<li class="breadcrumb-item text-secondary"><c:out value="${grade.title}" /></li>
+					<li class="breadcrumb-item active"><c:out value="${grade.title}" /></li>
 				</ol>
 			
 				<div class="card mb-3">
@@ -70,7 +70,7 @@
 						        <tr>
 						        	<td><b>Actions</b></td>
 									<td>
-										<a class="btn btn-warning" href="studentgrades" class="btn">Back</a>
+										<a class="btn btn-warning" href="studentgrades"><i class="fas fa-caret-left" style="margin-right:8px"></i>Back</a>
 									</td>
 								</tr>
 							</tbody>
