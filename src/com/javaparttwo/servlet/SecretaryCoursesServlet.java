@@ -95,6 +95,11 @@ public class SecretaryCoursesServlet extends HttpServlet {
 			    request.getRequestDispatcher("WEB-INF/views/secretary-courses/edit.jsp").forward(request, response);
 			    break;
 			}
+			case "delete": {
+			    courseService.deleteCourse(id);
+			    response.sendRedirect("secretarycourses");
+			    break;
+			}
 			default: {
 			    List<Course> courses = courseService.getCourses(authService.getUser().getDepartmentId());
 			    request.setAttribute("courses", courses);
@@ -124,11 +129,6 @@ public class SecretaryCoursesServlet extends HttpServlet {
 		String action = getParameterOrDefault(request, "action", "");
 		
 		switch (action) {
-			case "delete": {
-			    courseService.deleteCourse(id);
-			    response.sendRedirect("secretarycourses");
-			    break;
-			}
 			case "save": {
 				courseService.addCourse(request.getParameter("id"),request.getParameter("title"),request.getParameter("semester"),
 						request.getParameter("ects"),request.getParameter("teachingHours"),request.getParameter("teachingInstructor"), authService.getUser().getDepartmentId());
