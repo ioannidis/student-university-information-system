@@ -29,7 +29,7 @@
 		         		<i class="fa fa-table"></i><b>Edit course</b>
 		         	</div>
 		       		<div class="card-body">
-						<form action="courses?action=save" method="POST">
+						<form action="secretarycourses?action=save" method="POST">
 						<div class="form-group">
 								<label for="title"><strong>Course Id</strong></label>
 								<input type="text" class="form-control"  name="id" id="id" value="" required/>

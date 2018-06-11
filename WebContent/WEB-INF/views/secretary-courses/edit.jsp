@@ -28,7 +28,7 @@
 	       <div class="card-header">
 	         <i class="fa fa-table"></i><b>Edit course</b></div>
 	       <div class="card-body">
-	<form action="courses?id=${course.courseId}&action=update" method="POST">
+	<form action="secretarycourses?id=${course.courseId}&action=update" method="POST">
 	<div class="form-group">
 			<label for="title"><strong>Course Id</strong></label>
 			<input type="text" class="form-control"  name="title" id="id" value="${course.courseId}" disabled/>
