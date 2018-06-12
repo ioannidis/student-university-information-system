@@ -78,7 +78,11 @@ public class CourseService {
 	ResultSet rs = null;
 	PreparedStatement stmt = null;
 
-	String str = "SELECT * FROM javapart2.courses WHERE department_id=?";
+	String str = "SELECT c.id, c.title, c.ects, c.teaching_hours, u.first_name, u.last_name, c.semester, c.department_id "
+			+ "FROM javapart2.courses AS c "
+			+ "INNER JOIN javapart2.users AS u "
+			+ "ON c.instructor_username = u.username "
+			+ "WHERE c.department_id=?";
 
 	try {
 	    con = ds.getConnection();
@@ -86,12 +90,14 @@ public class CourseService {
 	    stmt = con.prepareStatement(str);
 	    stmt.setString(1, departmentId);
 
-
 	    rs = stmt.executeQuery();
-
+	    
+	    String fullname;
+	    
 	    while (rs.next()) {
-		courses.add(new Course(rs.getString("id"), rs.getString("title"), rs.getInt("ects"),
-			rs.getInt("teaching_hours"), rs.getString("instructor_username"), rs.getInt("semester"), rs.getString("department_id")));
+	    	fullname = rs.getString("first_name") + " " + rs.getString("last_name");
+			courses.add(new Course(rs.getString("id"), rs.getString("title"), rs.getInt("ects"),
+				rs.getInt("teaching_hours"), fullname, rs.getInt("semester"), rs.getString("department_id")));
 	    }
 
 	} catch (SQLException e) {
@@ -122,7 +128,9 @@ public class CourseService {
 	ResultSet rs = null;
 	PreparedStatement stmt = null;
 
-	String str = "SELECT * FROM javapart2.courses WHERE id=?";
+	String str = "SELECT c.id, c.title, c.ects, c.teaching_hours, c.instructor_username, c.semester, c.department_id, u.first_name, u.last_name FROM javapart2.courses AS c "
+			+ "INNER JOIN javapart2.users AS u ON c.instructor_username = u.username "
+			+ "WHERE c.id=?";
 
 	try {
 	    con = ds.getConnection();
@@ -131,10 +139,10 @@ public class CourseService {
 	    stmt.setString(1, id);
 
 	    rs = stmt.executeQuery();
-
+	    
 	    if (rs.next()) {
-		return new Course(rs.getString("id"), rs.getString("title"), rs.getInt("ects"),
-			rs.getInt("teaching_hours"), rs.getString("instructor_username"), rs.getInt("semester"), rs.getString("department_id"));
+			return new Course(rs.getString("id"), rs.getString("title"), rs.getInt("ects"),
+				rs.getInt("teaching_hours"), rs.getString("instructor_username"), rs.getInt("semester"), rs.getString("department_id"));
 	    }
 
 	} catch (SQLException e) {

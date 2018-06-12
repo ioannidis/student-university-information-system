@@ -35,7 +35,11 @@ public class GradeService {
     	ResultSet rs = null;
     	PreparedStatement stmt = null;
 
-    	String str = "(SELECT * FROM javapart2.grades RIGHT JOIN javapart2.courses ON javapart2.grades.course_id = javapart2.courses.id WHERE student_id=? AND course_id=?)";
+    	String str = "SELECT c.id, c.title, c.ects, c.teaching_hours, c.semester, c.department_id, u.first_name, u.last_name, g.grade "
+    			+ "FROM javapart2.grades AS g "
+    			+ "RIGHT JOIN javapart2.courses AS c ON g.course_id = c.id "
+    			+ "INNER JOIN javapart2.users AS u ON c.instructor_username = u.username "
+    			+ "WHERE g.student_id=? AND g.course_id=?";
 
     	try {
     	    con = ds.getConnection();
@@ -46,9 +50,11 @@ public class GradeService {
 
     	    rs = stmt.executeQuery();
     	    
+    	    String fullname;
     	    if (rs.next()) {
+    	    	fullname = rs.getString("first_name") + " " + rs.getString("last_name");
 	    		return new Grade(rs.getString("id"), rs.getString("title"), rs.getInt("ects"),
-	    			rs.getInt("teaching_hours"), rs.getString("instructor_username"), rs.getInt("grade"), rs.getInt("semester"), rs.getString("department_id"));
+	    			rs.getInt("teaching_hours"), fullname, rs.getInt("grade"), rs.getInt("semester"), rs.getString("department_id"));
     	    }
 
     	} catch (SQLException e) {
