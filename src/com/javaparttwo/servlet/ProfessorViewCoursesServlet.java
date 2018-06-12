@@ -1,7 +1,6 @@
 package com.javaparttwo.servlet;
 
 import java.io.IOException;
-
 import javax.annotation.Resource;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -9,21 +8,20 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.sql.DataSource;
-
 import com.javaparttwo.service.AuthService;
 import com.javaparttwo.service.ProfessorService;
 
 /**
  * Handles instructor requests and responses.
  */
-@WebServlet({ "/ProfessorViewCoursesServlet", "/instructorcourses" })
+@WebServlet({"/ProfessorViewCoursesServlet", "/instructorcourses"})
 public class ProfessorViewCoursesServlet extends HttpServlet {
-    
+
     /**
      * Java related serial version UID.
      */
     private static final long serialVersionUID = 1L;
-    
+
     /**
      * An instance of the database connection.
      */
@@ -34,31 +32,24 @@ public class ProfessorViewCoursesServlet extends HttpServlet {
      * Handles all GET requests.
      */
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
-	    throws ServletException, IOException {
-    	
-    	AuthService auth = new AuthService(request.getSession());
+            throws ServletException, IOException {
 
-    	if (!auth.isLoggedIn()) {
-    	    response.sendRedirect("login");
-    	    return;
-    	}
+        AuthService auth = new AuthService(request.getSession());
 
-    	if (!auth.hasRole("instructor")) {
-    	    response.sendError(HttpServletResponse.SC_FORBIDDEN);
-    	    return;
-    	}
-    	
-    	ProfessorService service = new ProfessorService(ds);
-    	
-    	request.setAttribute("courses", service.getCourses(auth.getUser().getUsername()));
-    	request.getRequestDispatcher("WEB-INF/views/professor/view-courses.jsp").forward(request, response);
-    }
+        if (!auth.isLoggedIn()) {
+            response.sendRedirect("login");
+            return;
+        }
 
-    /**
-     * Handles all POST requests.
-     */
-    protected void doPost(HttpServletRequest request, HttpServletResponse response)
-	    throws ServletException, IOException {
-	doGet(request, response);
+        if (!auth.hasRole("instructor")) {
+            response.sendError(HttpServletResponse.SC_FORBIDDEN);
+            return;
+        }
+
+        ProfessorService service = new ProfessorService(ds);
+
+        request.setAttribute("courses", service.getCourses(auth.getUser().getUsername()));
+        request.getRequestDispatcher("WEB-INF/views/professor/view-courses.jsp").forward(request,
+                response);
     }
 }
