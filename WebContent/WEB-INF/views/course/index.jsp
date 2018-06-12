@@ -36,6 +36,7 @@
 										<th>Title</th>
 										<th>Ects</th>
 										<th>Teaching Hours</th>
+										<th>Semester</th>
 										<th>Instructor</th>
 									</tr>
 								</thead>
@@ -46,6 +47,7 @@
 											<th><c:out value="${course.title}" /></th>
 											<th><c:out value="${course.ects}" /></th>
 											<th><c:out value="${course.teachingHours}" /></th>
+											<th><c:out value="${course.semester}" /></th>
 											<th><c:out value="${course.instructorUsername}" /></th>
 										</tr>
 								    </c:forEach>
