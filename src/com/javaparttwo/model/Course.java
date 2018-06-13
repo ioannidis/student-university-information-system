@@ -36,7 +36,7 @@ public class Course {
     private int semester;
 
     /**
-     * The department_id of this course.
+     * The department of this course.
      */
     private String departmentId;
 

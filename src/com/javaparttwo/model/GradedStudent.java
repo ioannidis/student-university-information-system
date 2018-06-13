@@ -11,6 +11,7 @@ public final class GradedStudent extends User {
     private int grade;
 
     /**
+     * Creates a new GradedStudent.
      * 
      * @param username The username of the user.
      * @param password The password of the user.

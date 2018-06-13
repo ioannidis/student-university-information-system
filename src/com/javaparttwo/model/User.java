@@ -72,7 +72,6 @@ public class User {
         this.email = email;
         this.roleId = roleId;
         this.departmentId = department;
-
     }
 
     /**

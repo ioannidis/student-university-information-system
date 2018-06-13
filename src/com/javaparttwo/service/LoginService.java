@@ -27,7 +27,7 @@ public class LoginService {
     }
 
     /**
-     * Authenticates a user with the provided username and password.
+     * Authenticates a user with the provided username.
      * 
      * @param username The username of the user.
      * @return The user object or null.

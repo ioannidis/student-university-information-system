@@ -35,13 +35,4 @@ public class EncryptionServlet extends HttpServlet {
 
         response.getWriter().append(output);
     }
-
-    /**
-     * Handles all POST requests.
-     */
-    protected void doPost(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        doGet(request, response);
-    }
-
 }

@@ -48,6 +48,11 @@ public class AuthService {
         return false;
     }
 
+    /**
+     * Get the logged in user.
+     * 
+     * @return The logged in user.
+     */
     public User getUser() {
         return (session.getAttribute("user") != null) ? (User) session.getAttribute("user") : null;
     }

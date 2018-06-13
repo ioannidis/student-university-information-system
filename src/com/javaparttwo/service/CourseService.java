@@ -76,9 +76,10 @@ public class CourseService {
     }
 
     /**
-     * Returns the list of registered courses.
+     * Returns the list of courses for the department.
      * 
-     * @return The list of courses.
+     * @param departmentId The department of the courses.
+     * @return The list of courses for the department.
      */
     public List<Course> getCourses(String departmentId) {
         List<Course> courses = new ArrayList<>();

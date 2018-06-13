@@ -35,12 +35,4 @@ public class LogoutServlet extends HttpServlet {
 
         response.sendRedirect("login");
     }
-
-    /**
-     * Handles all POST requests.
-     */
-    protected void doPost(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        doGet(request, response);
-    }
 }

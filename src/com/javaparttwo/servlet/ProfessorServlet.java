@@ -48,6 +48,5 @@ public class ProfessorServlet extends HttpServlet {
                 deptService.getDepartment(authService.getUser().getDepartmentId()));
         request.getRequestDispatcher("WEB-INF/views/professor/index.jsp").forward(request,
                 response);
-
     }
 }

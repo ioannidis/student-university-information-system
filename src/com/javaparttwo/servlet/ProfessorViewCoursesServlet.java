@@ -12,7 +12,7 @@ import com.javaparttwo.service.AuthService;
 import com.javaparttwo.service.ProfessorService;
 
 /**
- * Handles instructor requests and responses.
+ * Handles course view requests by professors.
  */
 @WebServlet({"/ProfessorViewCoursesServlet", "/instructorcourses"})
 public class ProfessorViewCoursesServlet extends HttpServlet {
