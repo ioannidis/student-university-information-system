@@ -21,7 +21,7 @@ public class ProfessorServlet extends HttpServlet {
     /**
      * An instance of the database connection.
      */
-    @Resource(name = "jdbc/javapart2")
+    @Resource(name = "jdbc/javapart3")
     private DataSource ds;
 
     /**
