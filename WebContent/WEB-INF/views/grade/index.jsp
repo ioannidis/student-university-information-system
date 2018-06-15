@@ -6,7 +6,7 @@
 <html>
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-	<title>Single Course</title>
+	<title>Student | Courses</title>
 	<c:import url="/WEB-INF/views/styles.jsp"></c:import>
 </head>
 <body class="fixed-nav sticky-footer bg-dark" id="page-top" cz-shortcut-listen="true">
