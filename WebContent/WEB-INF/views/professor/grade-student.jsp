@@ -61,6 +61,7 @@
 										<form class="form-inline" action="gradestudent?username=<c:out value="${ username }" />&course_id=<c:out value="${ courseId }" />" method="post">
 											<input type="number" min="0" max="10" value="<c:out value="${ grade }" />" class="form-control col-md-2" name="grade" placeholder="Grade" required>
 											<button type="submit" class="btn btn-success ml-2"><i class="far fa-save" style="margin-right:8px"></i>Save</button>
+											<a href="<c:url value="gradestudents?course_id=${course.courseId}"/>" class="btn btn-warning ml-2"><i class="fas fa-caret-left" style="margin-right:8px"></i>Cancel</a>
 										</form>
 									</td>
 								</tr>
