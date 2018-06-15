@@ -49,7 +49,7 @@ public class Course {
      * @param ects The ETCS of this course.
      * @param teachingHours The teaching hours of this course.
      * @param instructorUsername The instructor of this course.
-     * @param departmentId The department in which the course belongs to.
+     * @param department The department in which the course belongs to.
      */
     public Course(String courseId, String title, int ects, int teachingHours,
             String instructorUsername, int semester, String department) {

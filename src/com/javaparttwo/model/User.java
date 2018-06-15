@@ -221,7 +221,7 @@ public class User {
     /**
      * Set the department in which the user belongs to.
      * 
-     * @param roleId The new department.
+     * @param departmentId The new department.
      */
     public void setDepartmentId(String departmentId) {
         this.departmentId = departmentId;
