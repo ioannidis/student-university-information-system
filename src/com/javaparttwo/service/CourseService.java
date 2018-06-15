@@ -44,7 +44,7 @@ public class CourseService {
         Connection con = null;
         PreparedStatement stmt = null;
 
-        String str = "INSERT INTO javapart2.courses VALUES (?,?,?,?,?,?,?)";
+        String str = "INSERT INTO javapart3.courses VALUES (?,?,?,?,?,?,?)";
 
         try {
             con = ds.getConnection();
@@ -90,8 +90,8 @@ public class CourseService {
 
         String str =
                 "SELECT c.id, c.title, c.ects, c.teaching_hours, u.first_name, u.last_name, c.semester, c.department_id "
-                        + "FROM javapart2.courses AS c "
-                        + "INNER JOIN javapart2.users AS u "
+                        + "FROM javapart3.courses AS c "
+                        + "INNER JOIN javapart3.users AS u "
                         + "ON c.instructor_username = u.username "
                         + "WHERE c.department_id=?";
 
@@ -145,8 +145,8 @@ public class CourseService {
         PreparedStatement stmt = null;
 
         String str =
-                "SELECT c.id, c.title, c.ects, c.teaching_hours, c.instructor_username, c.semester, c.department_id, u.first_name, u.last_name FROM javapart2.courses AS c "
-                        + "INNER JOIN javapart2.users AS u ON c.instructor_username = u.username "
+                "SELECT c.id, c.title, c.ects, c.teaching_hours, c.instructor_username, c.semester, c.department_id, u.first_name, u.last_name FROM javapart3.courses AS c "
+                        + "INNER JOIN javapart3.users AS u ON c.instructor_username = u.username "
                         + "WHERE c.id=?";
 
         try {
@@ -197,7 +197,7 @@ public class CourseService {
         Connection con = null;
         PreparedStatement stmt = null;
 
-        String str = "UPDATE javapart2.courses "
+        String str = "UPDATE javapart3.courses "
                 + "SET title=?, ects=?, teaching_hours=?, instructor_username=? " + "WHERE id=?";
         try {
             con = ds.getConnection();
@@ -230,7 +230,7 @@ public class CourseService {
         Connection con = null;
         PreparedStatement stmt = null;
 
-        String str = "DELETE FROM javapart2.courses WHERE id=?";
+        String str = "DELETE FROM javapart3.courses WHERE id=?";
 
         try {
             con = ds.getConnection();

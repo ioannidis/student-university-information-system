@@ -40,7 +40,7 @@ public class ProfessorService {
     public List<User> getProfessors() {
         List<User> professors = new ArrayList<>();
 
-        String query = "SELECT * FROM javapart2.users WHERE role_id='instructor'";
+        String query = "SELECT * FROM javapart3.users WHERE role_id='instructor'";
 
         // Try-with-resource statement
         // https://docs.oracle.com/javase/tutorial/essential/exceptions/tryResourceClose.html
@@ -82,7 +82,7 @@ public class ProfessorService {
         PreparedStatement stmt = null;
 
         String query =
-                "SELECT * FROM javapart2.users WHERE role_id='instructor' AND department_id=?";
+                "SELECT * FROM javapart3.users WHERE role_id='instructor' AND department_id=?";
 
         try {
             con = ds.getConnection();

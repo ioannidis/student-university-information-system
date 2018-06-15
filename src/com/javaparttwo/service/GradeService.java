@@ -39,9 +39,9 @@ public class GradeService {
 
         String str =
                 "SELECT c.id, c.title, c.ects, c.teaching_hours, c.semester, c.department_id, u.first_name, u.last_name, g.grade "
-                        + "FROM javapart2.grades AS g "
-                        + "RIGHT JOIN javapart2.courses AS c ON g.course_id = c.id "
-                        + "INNER JOIN javapart2.users AS u ON c.instructor_username = u.username "
+                        + "FROM javapart3.grades AS g "
+                        + "RIGHT JOIN javapart3.courses AS c ON g.course_id = c.id "
+                        + "INNER JOIN javapart3.users AS u ON c.instructor_username = u.username "
                         + "WHERE g.student_id=? AND g.course_id=?";
 
         try {
@@ -126,7 +126,7 @@ public class GradeService {
         String avg = null;
 
         String str =
-                "SELECT AVG(javapart2.grades.grade) AS average FROM javapart2.grades WHERE student_id=? AND javapart2.grades.grade >= 5";
+                "SELECT AVG(javapart3.grades.grade) AS average FROM javapart3.grades WHERE student_id=? AND javapart3.grades.grade >= 5";
 
         try {
             con = ds.getConnection();
@@ -170,7 +170,7 @@ public class GradeService {
         List<Grade> grades = new ArrayList<>();
 
         String str =
-                "SELECT * FROM javapart2.grades RIGHT JOIN javapart2.courses ON javapart2.grades.course_id = javapart2.courses.id AND student_id=? WHERE javapart2.courses.department_id=? AND javapart2.grades.grade IS NOT NULL ORDER BY javapart2.courses.title ASC;";
+                "SELECT * FROM javapart3.grades RIGHT JOIN javapart3.courses ON javapart3.grades.course_id = javapart3.courses.id AND student_id=? WHERE javapart3.courses.department_id=? AND javapart3.grades.grade IS NOT NULL ORDER BY javapart3.courses.title ASC;";
 
         try {
             con = ds.getConnection();
@@ -223,7 +223,7 @@ public class GradeService {
         List<Grade> grades = new ArrayList<>();
 
         String str =
-                "SELECT * FROM javapart2.grades RIGHT JOIN javapart2.courses ON javapart2.grades.course_id = javapart2.courses.id AND student_id=? WHERE javapart2.courses.department_id=? ORDER BY javapart2.courses.title";
+                "SELECT * FROM javapart3.grades RIGHT JOIN javapart3.courses ON javapart3.grades.course_id = javapart3.courses.id AND student_id=? WHERE javapart3.courses.department_id=? ORDER BY javapart3.courses.title";
 
         try {
             con = ds.getConnection();
@@ -279,7 +279,7 @@ public class GradeService {
         List<Grade> grades = new ArrayList<>();
 
         String str =
-                "SELECT * FROM javapart2.grades RIGHT JOIN javapart2.courses ON javapart2.grades.course_id = javapart2.courses.id AND student_id=? WHERE javapart2.courses.department_id=? ORDER BY javapart2.courses.semester, javapart2.courses.title";
+                "SELECT * FROM javapart3.grades RIGHT JOIN javapart3.courses ON javapart3.grades.course_id = javapart3.courses.id AND student_id=? WHERE javapart3.courses.department_id=? ORDER BY javapart3.courses.semester, javapart3.courses.title";
 
         try {
             con = ds.getConnection();

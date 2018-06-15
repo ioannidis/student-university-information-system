@@ -38,7 +38,7 @@ public class DepartmentService {
 
         String department = null;
 
-        String str = "SELECT * FROM javapart2.departments WHERE id=?";
+        String str = "SELECT * FROM javapart3.departments WHERE id=?";
 
         try {
             con = ds.getConnection();
