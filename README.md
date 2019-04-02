@@ -1,4 +1,4 @@
-# JavaPartTwo
+# Student university information system
 
 Student university information system
 This project is an assigments for the final grade of the semester.
